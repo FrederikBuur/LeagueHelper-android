@@ -55,8 +55,13 @@ class ChampionDetailBuildsFragment : ChampionDetailFragmentSuper() {
 
     private fun setupView(champDataList: List<ChampData?>) {
         val roleList = ArrayList<String>()
-        champDataList.forEach {
-            roleList.add(it?.getRoleString() ?: "Default")
+
+        if (champDataList.isEmpty()) {
+            roleList.add("None")
+        } else {
+            champDataList.forEach {
+                roleList.add(it?.getRoleString() ?: "Default")
+            }
         }
 
         val adapter = ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, roleList)
@@ -69,6 +74,7 @@ class ChampionDetailBuildsFragment : ChampionDetailFragmentSuper() {
                     startingItemsView.setupView(it, true)
                 }
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
