@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:background="@color/colorTextMainLight"
+	tools:context=".pages.main.MainActivity">
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1">
+
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize"
+			android:background="@color/colorPrimary"/>
+
+		<fragment
+			android:id="@+id/mainNavHostFragment"
+			android:name="androidx.navigation.fragment.NavHostFragment"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			app:navGraph="@navigation/main_navigation_graph"
+			app:defaultNavHost="true"/>
+
+	</FrameLayout>
+
+
+	<com.google.android.material.bottomnavigation.BottomNavigationView
+		android:id="@+id/mainBottomNavigation"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="?android:attr/windowBackground"
+		app:menu="@menu/menu_bottom_navigation"/>
+
+</LinearLayout>

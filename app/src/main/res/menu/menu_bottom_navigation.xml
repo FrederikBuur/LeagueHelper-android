@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<item
+		android:id="@+id/destinationProfile"
+		android:icon="@drawable/ic_account"
+		android:title="Profile"/>
+	<item
+		android:id="@+id/destinationScanGame"
+		android:icon="@drawable/ic_error"
+		android:title="Scan Game"/>
+	<item
+		android:id="@+id/destinationChampions"
+		android:icon="@drawable/ic_search"
+		android:title="Champions"/>
+
+</menu>

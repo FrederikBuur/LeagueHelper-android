@@ -1,0 +1,28 @@
+<resources>
+
+	<!-- TODO: Remove or change this placeholder text -->
+	<string name="hello_blank_fragment">Hello blank fragment</string>
+
+	<string name="app_name">League Helper</string>
+	<string name="test">Hello blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd \n
+		asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello
+		blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment
+		ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd
+		\n asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd \n
+		asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello
+		blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment
+		ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd
+		\n asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd \n
+		asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello
+		blank fragment ashbdasbdasjbd \n THE END
+	</string>
+
+	<string name="fallback_version">9.2.1</string>
+	<string name="static_data_language_code">en_GB</string>
+
+	<!--ChampionDetail-->
+	<string name="champion_detail_builds_title">Builds</string>
+	<string name="champion_detail_spells_title">Spells</string>
+	<string name="champion_detail_skins_title">Skins</string>
+
+</resources>

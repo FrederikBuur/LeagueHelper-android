@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+			xmlns:app="http://schemas.android.com/apk/res-auto"
+			xmlns:tools="http://schemas.android.com/tools" android:id="@+id/main_navigation_graph"
+			app:startDestination="@+id/destinationProfile">
+
+	<fragment
+		android:name="com.example.leaguehelper.pages.profile.ProfileFragment"
+		tools:layout="@layout/fragment_profile" android:id="@+id/destinationProfile"/>
+	<fragment android:id="@+id/destinationChampions"
+			  android:name="com.example.leaguehelper.pages.champions.ChampionsFragment"
+			  tools:layout="@layout/fragment_champions">
+		<action android:id="@+id/toChampionDetail"
+				app:destination="@id/destinationChampionDetail" app:enterAnim="@anim/nav_default_enter_anim"
+				app:exitAnim="@anim/nav_default_exit_anim" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+				app:popExitAnim="@anim/nav_default_pop_exit_anim" app:launchSingleTop="false"
+				app:popUpTo="@+id/destinationChampions" app:popUpToInclusive="false"/>
+	</fragment>
+	<fragment android:id="@+id/destinationScanGame"
+			  android:name="com.example.leaguehelper.pages.scangame.ScanGameFragment"
+			  tools:layout="@layout/fragment_scan_game"/>
+	<fragment android:id="@+id/destinationChampionDetail"
+			  android:name="com.example.leaguehelper.pages.championdetail.ChampionDetailFragment"
+			  tools:layout="@layout/fragment_champion_detail">
+		<argument android:name="championId" app:argType="string" android:defaultValue="Teemo"/>
+		<argument android:name="championKey" app:argType="integer" android:defaultValue="1"/>
+	</fragment>
+</navigation>
