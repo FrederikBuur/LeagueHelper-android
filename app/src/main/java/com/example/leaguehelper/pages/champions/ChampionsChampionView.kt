@@ -9,12 +9,12 @@ import com.example.leaguehelper.data.SessionController
 import com.example.leaguehelper.models.staticdata.Image
 import com.example.leaguehelper.models.staticdata.champion.Champion
 import com.example.leaguehelper.util.ImageLoader
-import kotlinx.android.synthetic.main.view_champions_champion.view.*
+import kotlinx.android.synthetic.main.item_champions.view.*
 
 class ChampionsChampionView(context: Context) : FrameLayout(context) {
 
     init {
-        View.inflate(context, R.layout.view_champions_champion, this)
+        View.inflate(context, R.layout.item_champions, this)
     }
 
     fun setupView(champion: Champion) {

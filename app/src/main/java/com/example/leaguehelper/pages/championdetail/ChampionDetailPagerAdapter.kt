@@ -5,9 +5,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.leaguehelper.R
+import com.example.leaguehelper.pages.LeagueFragment
 import java.util.*
 
-class ChampionDetailPagerAdapter(val context: Context?, private val fragList: LinkedList<ChampionDetailFragmentSuper>, fm: FragmentManager?) : FragmentStatePagerAdapter(fm) {
+class ChampionDetailPagerAdapter(val context: Context?, private val fragList: LinkedList<LeagueFragment>, fm: FragmentManager?) : FragmentStatePagerAdapter(fm) {
 
     override fun getCount(): Int {
         return fragList.count()

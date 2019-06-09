@@ -14,8 +14,8 @@ interface ChampionDao {
     fun insertOrUpdateChampions(champions: List<Champion>)
 
     @Query("SELECT * FROM champion_table ORDER BY name ASC")
-    fun getAllChampions(): LiveData<List<Champion>?>
+    fun getAllChampions(): LiveData<List<Champion>>
 
     @Query("SELECT * FROM champion_table WHERE id = :id LIMIT 1")
-    fun getChampion(id: String): LiveData<Champion?>
+    fun getChampion(id: String): LiveData<Champion>
 }

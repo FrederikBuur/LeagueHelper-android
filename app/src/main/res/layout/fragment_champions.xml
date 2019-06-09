@@ -31,7 +31,7 @@
 			android:padding="@dimen/margin_4"
 			app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
 			app:spanCount="4"
-			tools:listitem="@layout/view_champions_champion"/>
+			tools:listitem="@layout/item_champions"/>
 
 		<com.turingtechnologies.materialscrollbar.DragScrollBar
 			android:id="@+id/dragScrollBar"

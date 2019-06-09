@@ -1,7 +1,6 @@
 package com.example.leaguehelper.util
 
 import androidx.room.TypeConverter
-import com.example.leaguehelper.models.championgg.ChampData
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

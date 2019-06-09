@@ -15,7 +15,7 @@ class ChampionDetailRepository(application: Application) {
         championDao = database.championDao()
     }
 
-    fun getChampion(id: String): LiveData<Champion?> {
+    fun getChampion(id: String): LiveData<Champion> {
         return championDao.getChampion(id)
     }
 

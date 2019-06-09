@@ -1,30 +1,57 @@
 package com.example.leaguehelper.pages.main
 
 import android.app.Application
+import android.content.res.Resources
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import com.example.leaguehelper.R
+import com.example.leaguehelper.data.LeagueHelperDatabase
 import com.example.leaguehelper.pages.main.MainRepository
 import com.example.leaguehelper.models.ConfigData
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.plusAssign
+import io.reactivex.schedulers.Schedulers
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var mainRepository = MainRepository(application)
+    private val disposable = CompositeDisposable()
+    private val repo: MainRepository
 
-    private var configData: LiveData<ConfigData?>
+    val configData: LiveData<ConfigData>
 
     init {
-        configData = mainRepository.getConfigData()
+        val configDao = LeagueHelperDatabase.getInstance(application).configDataDao()
+        val championDao = LeagueHelperDatabase.getInstance(application).championDao()
+        repo = MainRepository(configDao, championDao)
+        configData = repo.configData
+        updateIfPossible(application)
     }
 
-    fun getConfigData(): LiveData<ConfigData?> {
-        return configData
+    private fun updateIfPossible(application: Application) {
+
+        val language = application.resources.getString(R.string.static_data_language_code)
+        disposable += repo.checkForUpdates(language)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .switchIfEmpty {
+                // not updated
+                Log.d(this.toString(), "yay no need to update")
+            }
+            .subscribe({
+                // updated
+                Log.d(this.toString(), "yay update finished")
+            }, {
+                it.printStackTrace()
+            })
     }
 
-    fun checkForVersionUpdate(configData: ConfigData?, activity: RxAppCompatActivity) {
-        mainRepository.checkForVersionUpdate(configData, activity)
+    override fun onCleared() {
+        super.onCleared()
+        disposable.clear()
     }
-
-
 
 }

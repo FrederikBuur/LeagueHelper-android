@@ -11,7 +11,7 @@ class ChampionDetailViewModel(application: Application) : AndroidViewModel(appli
     private var championDetailRepository = ChampionDetailRepository(application)
 
 
-    fun getChampions(championId: String): LiveData<Champion?> {
+    fun getChampions(championId: String): LiveData<Champion> {
         return championDetailRepository.getChampion(championId)
     }
 }

@@ -27,7 +27,7 @@ class ChampionDetailFragment : LeagueFragment() {
 
     private var championId: String = ""
     private var championKey: Int = 1
-    private var viewPagerFragments = LinkedList<ChampionDetailFragmentSuper>()
+    private var viewPagerFragments = LinkedList<LeagueFragment>()
 
     private var championDetailViewModel: ChampionDetailViewModel? = null
 
@@ -52,7 +52,7 @@ class ChampionDetailFragment : LeagueFragment() {
         championDetailViewModel?.getChampions(championId)?.observe(this, Observer { champion ->
             champion?.let {
                 setupCollapsingToolbar(it)
-            } ?: kotlin.run {
+            } ?: run {
                 Log.d(TAG, "champion from view model is null")
             }
         })
@@ -67,7 +67,6 @@ class ChampionDetailFragment : LeagueFragment() {
     }
 
     private fun setupViewPager() {
-
         viewPagerFragments.add(ChampionDetailBuildsFragment.newInstance(championKey))
         viewPagerFragments.add(ChampionDetailSpellsFragment.newInstance(championKey))
         viewPagerFragments.add(ChampionDetailSkinsFragment.newInstance(championKey))
@@ -75,13 +74,6 @@ class ChampionDetailFragment : LeagueFragment() {
         val pagerAdapter = ChampionDetailPagerAdapter(context, viewPagerFragments, fragmentManager)
         championDetailViewPager.adapter = pagerAdapter
         championDetailTabLayout.setupWithViewPager(championDetailViewPager)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        viewPagerFragments.forEach { frag ->
-            frag.cleanUpResources()
-        }
     }
 
     companion object {

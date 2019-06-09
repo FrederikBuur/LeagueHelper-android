@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -21,10 +22,8 @@ import kotlinx.android.synthetic.main.fragment_champions.*
 
 class ChampionsFragment : LeagueFragment() {
 
-    private var championsViewModel: ChampionsViewModel? = null
+    private val championsViewModel by lazy { ViewModelProviders.of(this).get(ChampionsViewModel::class.java) }
     private var adapter: ChampionsAdapter? = null
-
-    private var championList: ArrayList<Champion> = ArrayList()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -38,29 +37,13 @@ class ChampionsFragment : LeagueFragment() {
         championsToolbar.title = "Search Champion"
 
         setupRecyclerView()
-        setupViewModel()
+        setupDataBinding() //TODO
     }
 
-    private fun setupViewModel() {
-        championsViewModel = ViewModelProviders.of(this).get(ChampionsViewModel::class.java)
-        championsViewModel?.getChampions()?.observe(this, Observer { champions ->
-            champions?.let {
-                val configData = SessionController.getInstance().configData
-                val champVersion = it.firstOrNull()?.version ?: "0.0.0"
-                if (it.isEmpty() || (configData?.isOlderThan(champVersion) != true && configData?.version != champVersion)) {
-                    championsViewModel?.fetchChampions(this)
-                } else {
-                    // update adapter if new content
-                    championList.clear()
-                    championList.addAll(it)
-                    adapter?.submitList(it)
-                }
-            } ?: kotlin.run {
-                // fetch champions into room
-                if (champions != null) return@run
-                championsViewModel?.fetchChampions(this)
-            }
-        })
+    private fun setupDataBinding() {
+//        val binding: ChampionsFragmentBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+//        binding.viewModel = championsViewModel
+//        binding.lifecycleOwner = this
     }
 
     private fun setupRecyclerView() {

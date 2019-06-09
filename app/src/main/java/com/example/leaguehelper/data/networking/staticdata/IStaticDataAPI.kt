@@ -1,7 +1,5 @@
 package com.example.leaguehelper.data.networking.staticdata
 
-import android.content.res.Resources
-import com.example.leaguehelper.R
 import com.example.leaguehelper.models.staticdata.champion.ChampionsResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -12,7 +10,7 @@ interface IStaticDataAPI {
     @GET("/cdn/{version}/data/{language}/champion.json")
     fun getChampions(
         @Path("version") version: String,
-        @Path("language") language: String = Resources.getSystem().getString(R.string.static_data_language_code)
+        @Path("language") language: String
     ): Observable<ChampionsResponse>
 
     //get summoner spells

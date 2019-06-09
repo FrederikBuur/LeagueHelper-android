@@ -2,15 +2,14 @@ package com.example.leaguehelper.pages.championdetail.championdetailspells
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import com.example.leaguehelper.R
-import com.example.leaguehelper.pages.championdetail.ChampionDetailFragmentSuper
+import com.example.leaguehelper.pages.LeagueFragment
 
-class ChampionDetailSpellsFragment : ChampionDetailFragmentSuper() {
+class ChampionDetailSpellsFragment : LeagueFragment() {
 
     private var championIdKey: Int = 1
 
@@ -24,8 +23,6 @@ class ChampionDetailSpellsFragment : ChampionDetailFragmentSuper() {
         // setup stuff
     }
 
-    override fun cleanUpResources() {
-    }
 
     companion object {
         fun newInstance(championIdKey: Int): ChampionDetailSpellsFragment {
