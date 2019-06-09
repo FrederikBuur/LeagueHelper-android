@@ -6,20 +6,10 @@ import com.example.leaguehelper.data.LeagueHelperDatabase
 import com.example.leaguehelper.data.dao.ChampionDao
 import com.example.leaguehelper.models.staticdata.champion.Champion
 
-class ChampionDetailRepository(application: Application) {
+class ChampionDetailRepository(
+    private val championDao: ChampionDao
+) {
 
-    private var championDao: ChampionDao
+    fun getChampion(id: String) = championDao.getChampion(id)
 
-    init {
-        val database = LeagueHelperDatabase.getInstance(application)
-        championDao = database.championDao()
-    }
-
-    fun getChampion(id: String): LiveData<Champion> {
-        return championDao.getChampion(id)
-    }
-
-    companion object {
-        const val TAG = "ChampionDetailRepository"
-    }
 }

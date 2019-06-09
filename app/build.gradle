@@ -29,8 +29,10 @@ dependencies {
 
     def support_version = '1.0.0'
     def app_compat_version = '1.0.2'
-    def lifecycle_version = '2.1.0-alpha04'
-    def room_version = '2.1.0-alpha06'
+    def lifecycle_version = '2.2.0-alpha01'
+    def view_model_kotlin = '2.1.0-alpha04'
+    def binding_collection_adapter = '3.0.0'
+    def room_version = '2.1.0-rc01'
     def nav_version = "1.0.0"
     def retrofit_version = '2.5.0'
     def ok_http_version = '3.10.0'
@@ -53,6 +55,14 @@ dependencies {
     // lifecycle
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+    // ViewModel Kotlin support
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$view_model_kotlin"
+
+    // BindingCollectionAdapter
+    implementation "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:$binding_collection_adapter"
+    implementation "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-ktx:$binding_collection_adapter"
+    implementation "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:$binding_collection_adapter"
 
     // room
     implementation "androidx.room:room-runtime:$room_version"

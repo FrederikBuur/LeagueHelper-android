@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
 import com.example.leaguehelper.R
-import com.example.leaguehelper.models.staticdata.Image
 import com.example.leaguehelper.models.staticdata.champion.Champion
 import com.example.leaguehelper.pages.LeagueFragment
 import com.example.leaguehelper.pages.championdetail.championdetailbuilds.ChampionDetailBuildsFragment
@@ -25,12 +24,16 @@ class ChampionDetailFragment : LeagueFragment() {
 
     private val args: ChampionDetailFragmentArgs by navArgs()
 
-    private var championId: String = ""
-    private var championKey: Int = 1
+    private var championId: String
+    private var championKey: Int
     private var viewPagerFragments = LinkedList<LeagueFragment>()
 
     private var championDetailViewModel: ChampionDetailViewModel? = null
 
+    init {
+        championId = args.championId
+        championKey = args.championKey
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_champion_detail, container, false)
@@ -41,8 +44,6 @@ class ChampionDetailFragment : LeagueFragment() {
 
         championDetailCollapsingToolbar.setupWithNavController(championDetailToolBar, findNavController())
 
-        championId = args.championId
-        championKey = args.championKey
         setupViewModel()
         setupViewPager()
     }
@@ -53,7 +54,7 @@ class ChampionDetailFragment : LeagueFragment() {
             champion?.let {
                 setupCollapsingToolbar(it)
             } ?: run {
-                Log.d(TAG, "champion from view model is null")
+                Log.d(this.toString(), "champion from view model is null")
             }
         })
     }
@@ -61,7 +62,7 @@ class ChampionDetailFragment : LeagueFragment() {
     private fun setupCollapsingToolbar(champion: Champion) {
         championDetailToolBar.title = champion.name
         championDetailTitle.text = champion.title
-        val imgSrc = Image.getChampionSplashPath(champion.id)
+        val imgSrc = champion.championSplashUrl()
         context?.let { ImageLoader.loadImage(it, imgSrc, championDetailImage) }
 
     }
@@ -74,9 +75,5 @@ class ChampionDetailFragment : LeagueFragment() {
         val pagerAdapter = ChampionDetailPagerAdapter(context, viewPagerFragments, fragmentManager)
         championDetailViewPager.adapter = pagerAdapter
         championDetailTabLayout.setupWithViewPager(championDetailViewPager)
-    }
-
-    companion object {
-        const val TAG = "ChampionDetailFragment"
     }
 }

@@ -17,4 +17,13 @@ data class Champion(
     @Embedded(prefix = "image_")
     var image: Image
 ) {
+
+    fun championIconUrl(): String {
+        return "https://ddragon.leagueoflegends.com/cdn/$version/img/champion/${image.full}"
+    }
+
+    fun championSplashUrl(): String {
+        return "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${name}_0.jpg"
+    }
+
 }

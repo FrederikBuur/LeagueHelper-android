@@ -1,40 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:id="@+id/championSmallContainer"
-	android:clickable="true"
-	android:focusable="true"
-	android:orientation="vertical"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:layout_margin="@dimen/margin_4">
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
 
-	<FrameLayout
+	<data>
+		<variable
+			name="viewModel"
+			type="com.example.leaguehelper.models.staticdata.champion.Champion"/>
+		<variable
+			name="listener"
+			type="com.example.leaguehelper.pages.champions.IChampionsItemClick"/>
+	</data>
+
+	<LinearLayout
+		android:orientation="vertical"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_gravity="center_horizontal">
+		android:onClick="@{() -> listener.onChampionClick(viewModel)}"
+		android:layout_margin="@dimen/margin_4">
 
 		<de.hdodenhof.circleimageview.CircleImageView
 			android:id="@+id/championSmallImage"
 			android:layout_width="@dimen/margin_72"
 			android:layout_height="@dimen/margin_72"
-			android:layout_gravity="center"
+			android:layout_gravity="center_horizontal"
 			android:src="@drawable/ic_account"
+			app:imageUrl="@{viewModel.championIconUrl()}"
 			app:civ_border_width="@dimen/margin_4"
 			app:civ_border_overlay="true"
 			app:civ_border_color="@color/colorPrimary"
 			app:civ_circle_background_color="@color/colorPrimaryBackground"/>
 
-	</FrameLayout>
+		<TextView
+			android:text="@{viewModel.name}"
+			android:layout_width="72dp"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:textAlignment="center"
+			android:lines="2"/>
 
-	<TextView
-		android:text="Champion Name"
-		android:id="@+id/championSmallTitle"
-		android:layout_width="72dp"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center_horizontal"
-		android:textAlignment="center"
-		android:lines="2"/>
-
-</LinearLayout>
+	</LinearLayout>
+</layout>
