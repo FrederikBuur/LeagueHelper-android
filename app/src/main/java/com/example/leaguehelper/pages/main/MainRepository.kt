@@ -25,6 +25,8 @@ class MainRepository(
         val localVersion = configData.value
         //get remote newest version
         return staticDataAPI.getVersions()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .concatMap { remoteVersions ->
                 // is update needed
                 val newVersion = remoteVersions.first()

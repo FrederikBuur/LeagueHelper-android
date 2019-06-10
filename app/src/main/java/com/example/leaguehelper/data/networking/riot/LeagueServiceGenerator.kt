@@ -1,5 +1,7 @@
 package com.example.leaguehelper.data.networking.riot
 
+import com.google.gson.annotations.SerializedName
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -9,8 +11,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 class LeagueServiceGenerator {
 
     companion object {
-        const val API_KEY = "RGAPI-af93790c-8b9c-4bba-8985-13e9eef63aa1"
-        const val BASE_URL = "https://euw1.api.riotgames.com"
+        const val API_KEY = "RGAPI-864188f9-84fb-4496-8fbe-32ab3d27e83e"
+        private const val BASE_URL = "https://euw1.api.riotgames.com"
+
+        fun getBaseUrl(region: Region) = "https://${region.name}.api.riotgames.com" // TODO support different regions
 
         private var retrofit: Retrofit? = null
         private fun getRetrofit(): Retrofit {
@@ -19,7 +23,18 @@ class LeagueServiceGenerator {
             if (retrofit == null) {
                 retrofit = Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .client(OkHttpClient.Builder().addInterceptor(log).build())
+                    .client(OkHttpClient.Builder()
+                        .addInterceptor(log)
+                        .addInterceptor { chain ->
+                            val original = chain.request()
+                            val request = original.newBuilder()
+                                .addHeader("X-Riot-Token", API_KEY)
+                                .method(original.method(), original.body())
+                                .build()
+                            chain.proceed(request)
+                        }
+                        .build()
+                    )
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build()
@@ -28,8 +43,23 @@ class LeagueServiceGenerator {
 
         }
 
-//        fun createStaticDataAPI(): IStaticData {
-//            return getRetrofit().create(IStaticData::class.java)
-//        }
+        fun createRiotDataAPI(): IRiotDataAPI {
+            return getRetrofit().create(IRiotDataAPI::class.java)
+        }
     }
+
+    enum class Region {
+        @SerializedName("euw1")
+        EUW1,
+        @SerializedName("na1")
+        NA1,
+        @SerializedName("k1")
+        KR,
+        @SerializedName("ru")
+        RU,
+        @SerializedName("la1")
+        LA1,
+
+    }
+
 }

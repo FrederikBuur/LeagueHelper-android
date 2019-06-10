@@ -35,8 +35,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
         val language = application.resources.getString(R.string.static_data_language_code)
         disposable += repo.checkForUpdates(language)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
             .switchIfEmpty {
                 // not updated
                 Log.d(this.toString(), "yay no need to update")
