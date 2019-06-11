@@ -16,7 +16,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.schedulers.Schedulers
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class MainViewModel(private val app: Application) : AndroidViewModel(app) {
 
     private val disposable = CompositeDisposable()
     private val repo: MainRepository
@@ -24,16 +24,15 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val configData: LiveData<ConfigData>
 
     init {
-        val configDao = LeagueHelperDatabase.getInstance(application).configDataDao()
-        val championDao = LeagueHelperDatabase.getInstance(application).championDao()
+        val configDao = LeagueHelperDatabase.getInstance(app).configDataDao()
+        val championDao = LeagueHelperDatabase.getInstance(app).championDao()
         repo = MainRepository(configDao, championDao)
         configData = repo.configData
-        updateIfPossible(application)
     }
 
-    private fun updateIfPossible(application: Application) {
+    fun updateIfPossible() {
 
-        val language = application.resources.getString(R.string.static_data_language_code)
+        val language = app.resources.getString(R.string.static_data_language_code)
         disposable += repo.checkForUpdates(language)
             .switchIfEmpty {
                 // not updated
