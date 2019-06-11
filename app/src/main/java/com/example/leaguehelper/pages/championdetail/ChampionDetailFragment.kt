@@ -24,16 +24,11 @@ class ChampionDetailFragment : LeagueFragment() {
 
     private val args: ChampionDetailFragmentArgs by navArgs()
 
-    private var championId: String
-    private var championKey: Int
+    private var championId: String = ""
+    private var championKey: Int = 1
     private var viewPagerFragments = LinkedList<LeagueFragment>()
 
     private var championDetailViewModel: ChampionDetailViewModel? = null
-
-    init {
-        championId = args.championId
-        championKey = args.championKey
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_champion_detail, container, false)
@@ -43,7 +38,8 @@ class ChampionDetailFragment : LeagueFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         championDetailCollapsingToolbar.setupWithNavController(championDetailToolBar, findNavController())
-
+        championId = args.championId
+        championKey = args.championKey
         setupViewModel()
         setupViewPager()
     }
