@@ -2,19 +2,24 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<data>
+		<import type="kotlin.jvm.functions.Function1"/>
+		<import type="kotlin.Unit"/>
+
 		<variable
 			name="viewModel"
 			type="com.example.leaguehelper.models.staticdata.champion.Champion"/>
+
 		<variable
-			name="listener"
-			type="com.example.leaguehelper.pages.champions.IChampionsItemClick"/>
+			name="itemClick"
+			type="Function1&lt;com.example.leaguehelper.models.staticdata.champion.Champion, Unit>"/>
+
 	</data>
 
 	<LinearLayout
 		android:orientation="vertical"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:onClick="@{() -> listener.onChampionClick(viewModel)}"
+		android:onClick="@{() -> itemClick.invoke(viewModel)}"
 		android:layout_margin="@dimen/margin_4">
 
 		<de.hdodenhof.circleimageview.CircleImageView

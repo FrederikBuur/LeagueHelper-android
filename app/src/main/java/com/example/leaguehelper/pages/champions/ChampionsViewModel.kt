@@ -15,8 +15,8 @@ import me.tatarka.bindingcollectionadapter2.toItemBinding
 
 class ChampionsViewModel(
     application: Application,
-    private val onChampionClicked: (Champion) -> Unit
-) : AndroidViewModel(application), IChampionsItemClick {
+    championAction: (Champion) -> Unit
+) : AndroidViewModel(application) {
 
     private val repo: ChampionsRepository
 
@@ -28,11 +28,7 @@ class ChampionsViewModel(
         repo = ChampionsRepository(championDao)
         champions = repo.allChampions
         championItemView = itemBindingOf<Champion>(BR.viewModel, R.layout.item_champions)
-            .bindExtra(BR.listener, this)
-    }
-
-    override fun onChampionClick(champion: Champion) {
-        onChampionClicked.invoke(champion)
+            .bindExtra(BR.itemClick, championAction)
     }
 
 }

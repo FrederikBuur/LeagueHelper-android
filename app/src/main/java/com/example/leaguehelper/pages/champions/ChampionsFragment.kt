@@ -42,17 +42,16 @@ class ChampionsFragment : LeagueFragment() {
         setupView()
     }
 
-    private fun navigateToDetail(champion: Champion) {
-        val id = champion.id
-        val key = champion.key
-        val action = ChampionsFragmentDirections.toChampionDetail(id, key)
-        findNavController().navigate(action)
-    }
-
     private fun setupView() {
         //setup toolbar
         championsToolbar.setupWithNavController(findNavController()) // TODO add search in toolbar
         championsToolbar.title = "Search Champion"
     }
 
+    private fun navigateToDetail(champion: Champion) {
+        val id = champion.id
+        val key = champion.key
+        val action = ChampionsFragmentDirections.toChampionDetail(id, key)
+        findNavController().navigate(action)
+    }
 }
