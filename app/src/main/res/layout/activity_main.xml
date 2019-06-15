@@ -6,7 +6,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical"
-	android:background="@color/colorTextMainLight"
+	android:background="@color/textMainLight"
 	tools:context=".pages.main.MainActivity">
 
 	<FrameLayout
@@ -17,7 +17,7 @@
 		<View
 			android:layout_width="match_parent"
 			android:layout_height="?attr/actionBarSize"
-			android:background="@color/colorPrimary"/>
+			android:background="@color/primary"/>
 
 		<fragment
 			android:id="@+id/mainNavHostFragment"

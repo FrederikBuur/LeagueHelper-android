@@ -17,7 +17,7 @@
 			android:id="@+id/championDetailCollapsingToolbar"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			app:contentScrim="@color/colorPrimary"
+			app:contentScrim="@color/primary"
 			app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
 			<FrameLayout
@@ -33,7 +33,7 @@
 				<TextView
 					android:text="Champion title"
 					android:id="@+id/championDetailTitle"
-					android:textColor="@color/colorTextMainLight"
+					android:textColor="@color/textMainLight"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_gravity="start|bottom"
@@ -54,9 +54,9 @@
 			android:id="@+id/championDetailTabLayout"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:background="@color/colorPrimary"
-			app:tabSelectedTextColor="@color/colorTextMainLight"
-			app:tabTextColor="@color/colorTextMainGrey"/>
+			android:background="@color/primary"
+			app:tabSelectedTextColor="@color/textMainLight"
+			app:tabTextColor="@color/textMainGrey"/>
 
 	</com.google.android.material.appbar.AppBarLayout>
 

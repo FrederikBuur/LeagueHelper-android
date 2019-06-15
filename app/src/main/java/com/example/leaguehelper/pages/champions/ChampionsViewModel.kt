@@ -10,6 +10,7 @@ import androidx.lifecycle.LiveData
 import com.example.leaguehelper.R
 import com.example.leaguehelper.data.LeagueHelperDatabase
 import com.example.leaguehelper.models.staticdata.champion.Champion
+import com.example.leaguehelper.pages.uiwidgets.ToolBarViewModel
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 import me.tatarka.bindingcollectionadapter2.itemBindingOf
 
@@ -31,6 +32,13 @@ class ChampionsViewModel(
         championItemView = itemBindingOf(BR.viewModel, R.layout.item_champion)
         obsChamps = ObservableArrayList()
         initItemViewModels()
+    }
+
+    val toolbarViewModel = createChampionsToolbar()
+
+    private fun createChampionsToolbar() : ToolBarViewModel {
+
+        return ToolBarViewModel("Champions")
     }
 
     fun initItemViewModels() {

@@ -25,8 +25,8 @@
 			app:imageUrl="@{viewModel.champion.championIconUrl()}"
 			app:civ_border_width="@dimen/margin_4"
 			app:civ_border_overlay="true"
-			app:civ_border_color="@color/colorPrimary"
-			app:civ_circle_background_color="@color/colorPrimaryBackground"/>
+			app:civ_border_color="@color/primary"
+			app:civ_circle_background_color="@color/backgroundLightBlue"/>
 
 		<TextView
 			android:text="@{viewModel.champion.name}"

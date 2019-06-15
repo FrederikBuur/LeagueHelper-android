@@ -2,19 +2,22 @@
 <resources>
 
     <!--main-->
-    <color name="colorPrimaryLight">#465764</color>
-    <color name="colorPrimary">#36474F</color>
-    <color name="colorPrimaryDark">#28323A</color>
-    <color name="colorAccent">#F44336</color>
+    <color name="primaryLight">#465764</color>
+    <color name="primary">#36474F</color>
+    <color name="primaryDark">#28323A</color>
+    <color name="accent">#F44336</color>
 
-    <!--shared-->
-    <color name="colorPrimaryBackground">#FFFBF5</color>
-    <color name="colorTextMainLight">#E9E9E9</color>
-    <color name="colorTextMainGrey">#979797</color>
-    <color name="colorTextMainDark">#363636</color>
-    <color name="colorIconWhite">#F5F5F5</color>
+    <!--text-->
+    <color name="textMainLight">#E9E9E9</color>
+    <color name="textMainGrey">#979797</color>
+    <color name="textMainDark">#363636</color>
 
+    <!--icon-->
+    <color name="iconWhite">#F5F5F5</color>
+
+    <!--background-->
     <color name="backgroundDarkTransparent">#72000000</color>
+    <color name="backgroundLightBlue">#F4F4FD</color>
 
 
 

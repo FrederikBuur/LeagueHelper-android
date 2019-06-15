@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -45,8 +46,7 @@ class ChampionsFragment : LeagueFragment() {
 
     private fun setupView() {
         //setup toolbar
-        championsToolbar.setupWithNavController(findNavController()) // TODO add search in toolbar
-        championsToolbar.title = "Search Champion"
+        (championsToolbar as? Toolbar)?.setupWithNavController(findNavController()) // TODO add search in toolbar
 
         // setup champions observer
         championsViewModel.champions.observe(this, Observer {

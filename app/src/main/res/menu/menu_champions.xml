@@ -4,7 +4,7 @@
 	<item
 		android:id="@+id/champions_search"
 		android:icon="@drawable/ic_search"
-		android:iconTint="@color/colorIconWhite"
+		android:iconTint="@color/iconWhite"
 		android:title="Search"
 	/>
 

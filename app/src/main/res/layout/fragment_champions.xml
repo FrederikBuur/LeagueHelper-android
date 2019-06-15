@@ -13,16 +13,13 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:orientation="vertical"
+		android:background="@color/backgroundLightBlue"
 		tools:context=".pages.champions.ChampionsFragment">
 
-		<androidx.appcompat.widget.Toolbar
-			android:id="@+id/championsToolbar"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="@color/colorPrimary"
-			android:elevation="@dimen/margin_8"
-			android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-			app:titleTextColor="@color/colorTextMainLight"/>
+		<include android:id="@+id/championsToolbar"
+				 layout="@layout/item_toolbar"
+				 app:viewModel="@{viewModel.toolbarViewModel}"/>
+
 
 		<androidx.recyclerview.widget.RecyclerView
 			android:id="@+id/championsRecyclerView"

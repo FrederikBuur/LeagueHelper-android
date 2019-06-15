@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+
+		<variable name="viewModel"
+				  type="com.example.leaguehelper.pages.uiwidgets.ToolBarViewModel"/>
+
+	</data>
+
+	<androidx.appcompat.widget.Toolbar
+		android:layout_width="match_parent"
+		android:layout_height="?attr/actionBarSize"
+		android:background="@color/primary"
+		android:elevation="@dimen/margin_8"
+		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+		app:title="@{viewModel.title}"
+		app:titleTextColor="@color/textMainLight">
+
+
+	</androidx.appcompat.widget.Toolbar>
+
+</layout>
