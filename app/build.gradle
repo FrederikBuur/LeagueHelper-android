@@ -27,73 +27,78 @@ android {
 
 dependencies {
 
-    def support_version = '1.0.0'
-    def app_compat_version = '1.0.2'
-    def lifecycle_version = '2.2.0-alpha01'
-    def view_model_kotlin = '2.1.0-alpha04'
-    def binding_collection_adapter = '3.0.0'
-    def room_version = '2.1.0-rc01'
-    def nav_version = "2.1.0-alpha05"
-    def retrofit_version = '2.5.0'
-    def ok_http_version = '3.10.0'
-    def trello_rx_lifecycle_version = '3.0.0'
-    def circle_image_view_version = '3.0.0'
-    def glide_version = '4.8.0'
-
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0-alpha03'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha03'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     // support libs
+    def support_version = '1.0.0'
     implementation "androidx.legacy:legacy-support-v4:$support_version"
+
+    def app_compat_version = '1.0.2'
     implementation "androidx.appcompat:appcompat:$app_compat_version"
 
     // lifecycle
+    def lifecycle_version = '2.2.0-alpha01'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
     // ViewModel Kotlin support
+    def view_model_kotlin = '2.2.0-alpha01'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$view_model_kotlin"
 
+    // paging
+    def paging_version = '2.1.0'
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
+    // room
+    def room_version = '2.1.0'
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
     // BindingCollectionAdapter
+    def binding_collection_adapter = '3.0.0'
     implementation "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:$binding_collection_adapter"
     implementation "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-ktx:$binding_collection_adapter"
     implementation "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:$binding_collection_adapter"
 
-    // room
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
 
     // android navigation component
+    def nav_version = "2.1.0-alpha05"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     // retrofit
+    def retrofit_version = '2.5.0'
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version",
             "com.squareup.retrofit2:converter-gson:$retrofit_version",
             "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 
-    // RxJava
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.3'
-    implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
-    implementation 'com.github.davidmoten:rxjava2-extras:0.1.26'
+    // RxKotlin
+    def rx_kotlin_version = '2.3.0'
+    implementation "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version"
+
+    // trello lifecycle
+    def trello_rx_lifecycle_version = '3.0.0'
     implementation "com.trello.rxlifecycle3:rxlifecycle:$trello_rx_lifecycle_version",
             "com.trello.rxlifecycle3:rxlifecycle-components:$trello_rx_lifecycle_version",
             "com.trello.rxlifecycle3:rxlifecycle-kotlin:$trello_rx_lifecycle_version"
 
     // okhttp
+    def ok_http_version = '3.10.0'
     implementation "com.squareup.okhttp3:logging-interceptor:$ok_http_version"
     implementation 'com.google.android.material:material:1.0.0'
 
     // circle imageView
+    def circle_image_view_version = '3.0.0'
     implementation "de.hdodenhof:circleimageview:$circle_image_view_version"
 
     // Glide
+    def glide_version = '4.8.0'
     implementation "com.github.bumptech.glide:glide:$glide_version"
     implementation "com.github.bumptech.glide:okhttp3-integration:$glide_version"
 
