@@ -33,10 +33,10 @@
 			app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
 			app:spanCount="4"
 			app:itemBinding="@{viewModel.championItemView}"
-			app:items="@{viewModel.champions}"
+			app:items="@{viewModel.obsChamps}"
 			tools:showIn="@layout/activity_main"
 			tools:context=".MainActivity"
-			tools:listitem="@layout/item_champions"/>
+			tools:listitem="@layout/item_champion"/>
 
 	</LinearLayout>
 </layout>

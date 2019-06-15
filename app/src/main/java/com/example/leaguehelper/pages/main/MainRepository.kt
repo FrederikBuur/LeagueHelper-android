@@ -5,10 +5,7 @@ import com.example.leaguehelper.data.dao.ConfigDataDao
 import com.example.leaguehelper.data.networking.staticdata.StaticDataServiceGenerator
 import com.example.leaguehelper.data.networking.staticdata.IStaticDataAPI
 import com.example.leaguehelper.models.ConfigData
-import com.example.leaguehelper.models.staticdata.champion.ChampionsResponse
-import io.reactivex.Completable
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class MainRepository(

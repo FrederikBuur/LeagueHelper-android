@@ -68,8 +68,10 @@ class ChampionDetailFragment : LeagueFragment() {
         viewPagerFragments.add(ChampionDetailSpellsFragment.newInstance(championKey))
         viewPagerFragments.add(ChampionDetailSkinsFragment.newInstance(championKey))
 
-        val pagerAdapter = ChampionDetailPagerAdapter(context, viewPagerFragments, fragmentManager)
-        championDetailViewPager.adapter = pagerAdapter
-        championDetailTabLayout.setupWithViewPager(championDetailViewPager)
+        fragmentManager?.let {
+            val pagerAdapter = ChampionDetailPagerAdapter(context, viewPagerFragments, it)
+            championDetailViewPager.adapter = pagerAdapter
+            championDetailTabLayout.setupWithViewPager(championDetailViewPager)
+        }
     }
 }

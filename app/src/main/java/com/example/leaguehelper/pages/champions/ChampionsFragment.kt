@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.leaguehelper.R
@@ -21,7 +23,7 @@ class ChampionsFragment : LeagueFragment() {
     private val championsViewModel by lazy {
         activity?.let { act ->
             ViewModelProviders.of(this,
-                ChampionsViewModelFactory(act.application) { champion -> navigateToDetail(champion) }
+                ChampionsViewModelFactory(act.application) { champion, view -> navigateToDetail(champion, view) }
             ).get(ChampionsViewModel::class.java)
         } ?: run {
             ViewModelProviders.of(this).get(ChampionsViewModel::class.java)
@@ -29,8 +31,7 @@ class ChampionsFragment : LeagueFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding: FragmentChampionsBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_champions, container, false)
+        val binding: FragmentChampionsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_champions, container, false)
         binding.viewModel = championsViewModel
         binding.lifecycleOwner = this
         return binding.root
@@ -46,12 +47,17 @@ class ChampionsFragment : LeagueFragment() {
         //setup toolbar
         championsToolbar.setupWithNavController(findNavController()) // TODO add search in toolbar
         championsToolbar.title = "Search Champion"
+
+        // setup champions observer
+        championsViewModel.champions.observe(this, Observer {
+            championsViewModel.initItemViewModels()
+        })
     }
 
-    private fun navigateToDetail(champion: Champion) {
+    private fun navigateToDetail(champion: Champion, view: View) {
         val id = champion.id
         val key = champion.key
         val action = ChampionsFragmentDirections.toChampionDetail(id, key)
-        findNavController().navigate(action)
+        view.findNavController().navigate(action)
     }
 }

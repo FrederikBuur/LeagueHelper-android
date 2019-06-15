@@ -2,16 +2,10 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<data>
-		<import type="kotlin.jvm.functions.Function1"/>
-		<import type="kotlin.Unit"/>
 
 		<variable
 			name="viewModel"
-			type="com.example.leaguehelper.models.staticdata.champion.Champion"/>
-
-		<variable
-			name="itemClick"
-			type="Function1&lt;com.example.leaguehelper.models.staticdata.champion.Champion, Unit>"/>
+			type="com.example.leaguehelper.pages.champions.ChampionItemViewModel"/>
 
 	</data>
 
@@ -19,7 +13,7 @@
 		android:orientation="vertical"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:onClick="@{() -> itemClick.invoke(viewModel)}"
+		android:onClick="@{viewModel::onChampionClicked}"
 		android:layout_margin="@dimen/margin_4">
 
 		<de.hdodenhof.circleimageview.CircleImageView
@@ -28,14 +22,14 @@
 			android:layout_height="@dimen/margin_72"
 			android:layout_gravity="center_horizontal"
 			android:src="@drawable/ic_account"
-			app:imageUrl="@{viewModel.championIconUrl()}"
+			app:imageUrl="@{viewModel.champion.championIconUrl()}"
 			app:civ_border_width="@dimen/margin_4"
 			app:civ_border_overlay="true"
 			app:civ_border_color="@color/colorPrimary"
 			app:civ_circle_background_color="@color/colorPrimaryBackground"/>
 
 		<TextView
-			android:text="@{viewModel.name}"
+			android:text="@{viewModel.champion.name}"
 			android:layout_width="72dp"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"

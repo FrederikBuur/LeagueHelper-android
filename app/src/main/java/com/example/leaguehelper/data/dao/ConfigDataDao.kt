@@ -15,5 +15,5 @@ interface ConfigDataDao {
     fun insertOrUpdateConfigData(configData: ConfigData)
 
     @Query("SELECT * FROM config_data_table WHERE id = 1")
-    fun getConfigData(): LiveData<ConfigData>
+    fun getConfigData(): LiveData<ConfigData?>
 }

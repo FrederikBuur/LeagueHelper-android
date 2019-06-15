@@ -33,7 +33,7 @@ dependencies {
     def view_model_kotlin = '2.1.0-alpha04'
     def binding_collection_adapter = '3.0.0'
     def room_version = '2.1.0-rc01'
-    def nav_version = "1.0.0"
+    def nav_version = "2.1.0-alpha05"
     def retrofit_version = '2.5.0'
     def ok_http_version = '3.10.0'
     def trello_rx_lifecycle_version = '3.0.0'
@@ -69,8 +69,8 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
 
     // android navigation component
-    implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     // retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version",

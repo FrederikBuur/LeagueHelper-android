@@ -8,7 +8,7 @@ import com.example.leaguehelper.R
 import com.example.leaguehelper.pages.LeagueFragment
 import java.util.*
 
-class ChampionDetailPagerAdapter(val context: Context?, private val fragList: LinkedList<LeagueFragment>, fm: FragmentManager?) : FragmentStatePagerAdapter(fm) {
+class ChampionDetailPagerAdapter(val context: Context?, private val fragList: LinkedList<LeagueFragment>, fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
     override fun getCount(): Int {
         return fragList.count()
