@@ -7,7 +7,6 @@ import androidx.databinding.ObservableList
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import com.example.leaguehelper.R
 import com.example.leaguehelper.data.LeagueHelperDatabase
 import com.example.leaguehelper.models.staticdata.champion.Champion
@@ -22,20 +21,19 @@ class ChampionsViewModel(
     private val repo: ChampionsRepository
 
     val champions: LiveData<List<Champion>>
-    val obsChamps: ObservableList<ChampionItemViewModel>
     val championItemView: ItemBinding<ChampionItemViewModel>
+    val obsChamps: ObservableList<ChampionItemViewModel>
 
     init {
         val championDao = LeagueHelperDatabase.getInstance(application).championDao()
         repo = ChampionsRepository(championDao)
-        championItemView = itemBindingOf(BR.viewModel, R.layout.item_champion)
         champions = repo.allChampions
+        championItemView = itemBindingOf(BR.viewModel, R.layout.item_champion)
         obsChamps = ObservableArrayList()
         initItemViewModels()
     }
 
     fun initItemViewModels() {
-
         champions.value?.let { cList ->
             obsChamps.clear()
             cList.forEach {

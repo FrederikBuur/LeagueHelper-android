@@ -52,8 +52,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$view_model_kotlin"
 
     // paging
-    def paging_version = '2.1.0'
-    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+//    def paging_version = '2.1.0'
+//    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
 
     // room
     def room_version = '2.1.0'
