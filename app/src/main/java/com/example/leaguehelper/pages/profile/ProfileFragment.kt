@@ -5,18 +5,33 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.leaguehelper.R
+import com.example.leaguehelper.models.match.Match
 import com.example.leaguehelper.pages.LeagueFragment
+import com.example.leaguehelper.util.viewmodelfactory.ProfileViewModelFactory
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : LeagueFragment() {
 
-    private val profileViewModel by lazy { ViewModelProviders.of(this).get(ProfileViewModel::class.java) }
-
+    private val profileViewModel by lazy {
+        activity?.let { act ->
+            ViewModelProviders.of(this,
+                ProfileViewModelFactory(act.application) { match, view ->
+                    navigateToMatchDetail(
+                        match,
+                        view
+                    )
+                }
+            ).get(ProfileViewModel::class.java)
+        } ?: run {
+            ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_profile, container, false)
@@ -29,12 +44,16 @@ class ProfileFragment : LeagueFragment() {
         profileToolBar.title = "Summoner Name"
 
         profileViewModel.matches.observe(this, Observer { matches ->
-            var text = ""
-            matches.forEach { m ->
-                text += "${m.gameId} \n"
-            }
-            test.text = text
+           profileViewModel.addMatchesToViewModel(matches)
         })
+    }
+
+    private fun navigateToMatchDetail(match: Match, view: View) {
+        Toast.makeText(context, "Open match", Toast.LENGTH_SHORT).show()
+//        val id = champion.id
+//        val key = champion.key
+//        val action = ChampionsFragmentDirections.toChampionDetail(id, key)
+//        view.findNavController().navigate(action)
     }
 
 }

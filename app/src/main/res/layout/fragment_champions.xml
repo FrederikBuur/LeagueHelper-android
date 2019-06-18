@@ -29,8 +29,8 @@
 			android:clipChildren="false"
 			app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
 			app:spanCount="@integer/champions_span_count"
-			app:itemBinding="@{viewModel.championItemView}"
-			app:items="@{viewModel.obsChamps}"
+			app:itemBinding="@{viewModel.championItemBinding}"
+			app:items="@{viewModel.observableChamps}"
 			tools:showIn="@layout/activity_main"
 			tools:context=".MainActivity"
 			tools:listitem="@layout/item_champion"/>

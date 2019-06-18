@@ -1,4 +1,4 @@
-package com.example.leaguehelper.util
+package com.example.leaguehelper.util.viewmodelfactory
 
 import android.app.Application
 import android.view.View

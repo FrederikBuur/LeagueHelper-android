@@ -22,15 +22,15 @@ class ChampionsViewModel(
     private val repo: ChampionsRepository
 
     val champions: LiveData<List<Champion>>
-    val championItemView: ItemBinding<ChampionItemViewModel>
-    val obsChamps: ObservableList<ChampionItemViewModel>
+    val championItemBinding: ItemBinding<ChampionItemViewModel>
+    val observableChamps: ObservableList<ChampionItemViewModel>
 
     init {
         val championDao = LeagueHelperDatabase.getInstance(application).championDao()
         repo = ChampionsRepository(championDao)
         champions = repo.allChampions
-        championItemView = itemBindingOf(BR.viewModel, R.layout.item_champion)
-        obsChamps = ObservableArrayList()
+        championItemBinding = itemBindingOf(BR.viewModel, R.layout.item_champion)
+        observableChamps = ObservableArrayList()
         initItemViewModels()
     }
 
@@ -43,9 +43,9 @@ class ChampionsViewModel(
 
     fun initItemViewModels() {
         champions.value?.let { cList ->
-            obsChamps.clear()
+            observableChamps.clear()
             cList.forEach {
-                obsChamps.add(ChampionItemViewModel(it, onChampionClicked))
+                observableChamps.add(ChampionItemViewModel(it, onChampionClicked))
             }
         }
     }

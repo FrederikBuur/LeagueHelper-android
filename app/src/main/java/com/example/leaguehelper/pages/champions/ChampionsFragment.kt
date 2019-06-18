@@ -16,7 +16,7 @@ import com.example.leaguehelper.R
 import com.example.leaguehelper.databinding.FragmentChampionsBinding
 import com.example.leaguehelper.models.staticdata.champion.Champion
 import com.example.leaguehelper.pages.LeagueFragment
-import com.example.leaguehelper.util.ChampionsViewModelFactory
+import com.example.leaguehelper.util.viewmodelfactory.ChampionsViewModelFactory
 import kotlinx.android.synthetic.main.fragment_champions.*
 
 class ChampionsFragment : LeagueFragment() {
@@ -24,7 +24,12 @@ class ChampionsFragment : LeagueFragment() {
     private val championsViewModel by lazy {
         activity?.let { act ->
             ViewModelProviders.of(this,
-                ChampionsViewModelFactory(act.application) { champion, view -> navigateToDetail(champion, view) }
+                ChampionsViewModelFactory(act.application) { champion, view ->
+                    navigateToDetail(
+                        champion,
+                        view
+                    )
+                }
             ).get(ChampionsViewModel::class.java)
         } ?: run {
             ViewModelProviders.of(this).get(ChampionsViewModel::class.java)
