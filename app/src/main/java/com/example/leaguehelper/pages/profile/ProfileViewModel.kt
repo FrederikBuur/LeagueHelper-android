@@ -11,6 +11,8 @@ import com.example.leaguehelper.BR
 import com.example.leaguehelper.R
 import com.example.leaguehelper.data.LeagueHelperDatabase
 import com.example.leaguehelper.models.match.Match
+import com.example.leaguehelper.models.match.QueueType
+import com.example.leaguehelper.models.match.Team
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import me.tatarka.bindingcollectionadapter2.ItemBinding
@@ -43,7 +45,6 @@ class ProfileViewModel(
     }
 
     fun addMatchesToViewModel(matchesList: List<Match>) {
-        observableMatches.clear()
         matchesList.forEach {
             observableMatches.add(ProfileMatchHistoryViewModel(it, onMatchClicked))
         }

@@ -43,7 +43,6 @@ class ChampionsViewModel(
 
     fun initItemViewModels() {
         champions.value?.let { cList ->
-            observableChamps.clear()
             cList.forEach {
                 observableChamps.add(ChampionItemViewModel(it, onChampionClicked))
             }

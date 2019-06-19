@@ -6,7 +6,7 @@ import com.example.leaguehelper.models.match.Match
 
 class ProfileMatchHistoryViewModel(
     val match: Match,
-    val onMatchClicked: (Match, View) -> Unit
+    private val onMatchClicked: (Match, View) -> Unit
 ) {
 
     fun onMatchClicked(v: View) {
