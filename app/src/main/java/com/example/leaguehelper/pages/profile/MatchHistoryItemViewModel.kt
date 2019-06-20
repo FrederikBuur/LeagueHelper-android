@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.Toast
 import com.example.leaguehelper.models.match.Match
 
-class ProfileMatchHistoryViewModel(
+class MatchHistoryItemViewModel(
     val match: Match,
     private val onMatchClicked: (Match, View) -> Unit
 ) {

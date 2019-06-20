@@ -11,8 +11,6 @@ import com.example.leaguehelper.BR
 import com.example.leaguehelper.R
 import com.example.leaguehelper.data.LeagueHelperDatabase
 import com.example.leaguehelper.models.match.Match
-import com.example.leaguehelper.models.match.QueueType
-import com.example.leaguehelper.models.match.Team
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import me.tatarka.bindingcollectionadapter2.ItemBinding
@@ -32,8 +30,8 @@ class ProfileViewModel(
     val matches: LiveData<List<Match>>
 
     // data binding
-    val matchItemBinding: ItemBinding<ProfileMatchHistoryViewModel>
-    val observableMatches: ObservableList<ProfileMatchHistoryViewModel>
+    val matchItemBinding: ItemBinding<MatchHistoryItemViewModel>
+    val observableMatches: ObservableList<MatchHistoryItemViewModel>
 
     init {
         val matchDao = LeagueHelperDatabase.getInstance(application).matchDao()
@@ -44,13 +42,15 @@ class ProfileViewModel(
         getMatches()
     }
 
+    val fetchMore = { getMatches(observableMatches.size, observableMatches.size + 20) }
+
     fun addMatchesToViewModel(matchesList: List<Match>) {
         matchesList.forEach {
-            observableMatches.add(ProfileMatchHistoryViewModel(it, onMatchClicked))
+            observableMatches.add(MatchHistoryItemViewModel(it, onMatchClicked))
         }
     }
 
-    private fun getMatches(beginIndex: Int = 0, endIndex: Int = 20) {
+    private fun getMatches(beginIndex: Int = 0, endIndex: Int = 10) {
         disposable += repo.fetchMatches(accountId, beginIndex, endIndex)
             .doOnComplete {
                 Log.d(this.toString(), "matches fetched")
