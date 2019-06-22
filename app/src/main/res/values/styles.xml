@@ -8,4 +8,25 @@
 		<item name="colorAccent">@color/accent</item>
 	</style>
 
+	<style name="TextBig" parent="android:Widget.TextView">
+		<item name="android:textColor">@color/textMainDark</item>
+		<item name="android:textSize">16sp</item>
+		<item name="android:fontFamily">sans-serif-medium</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+
+	<style name="TextMedium" parent="android:Widget.TextView">
+		<item name="android:textColor">@color/textMainGrey</item>
+		<item name="android:textSize">14sp</item>
+		<item name="android:fontFamily">sans-serif</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+
+	<style name="TextSmall" parent="android:Widget.TextView">
+		<item name="android:textColor">@color/textMainGrey</item>
+		<item name="android:textSize">12sp</item>
+		<item name="android:fontFamily">sans-serif-light</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+
 </resources>

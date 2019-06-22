@@ -5,9 +5,6 @@ data class Image(
 ) {
 
     companion object {
-
-
-
         fun getSummonerSpellIconPath(version: String, spellName: String): String {
             return "http://ddragon.leagueoflegends.com/cdn/6.24.1/img/spell/SummonerFlash.png"
         }

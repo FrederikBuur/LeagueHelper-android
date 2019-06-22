@@ -2,6 +2,7 @@ package com.example.leaguehelper.util.binding
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import androidx.databinding.ObservableBoolean
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.leaguehelper.util.ImageLoader
@@ -19,11 +20,10 @@ class CustomBindingAdapter {
         }
 
         @JvmStatic
-        @BindingAdapter("pagination") // add canFetchMore bool og isFetchingBool from VM
-        fun setLoadMoreCallBack(recyclerView: RecyclerView, fetchMore: () -> Unit) {
+        @BindingAdapter(value = ["fetchMoreCallback", "isFetching"], requireAll = true)
+        fun setLoadMoreCallBack(recyclerView: RecyclerView, fetchMore: () -> Unit, isFetching: ObservableBoolean) {
 
             recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
 
@@ -32,7 +32,7 @@ class CustomBindingAdapter {
                         val totalCount = lm.itemCount
                         val lastVisibleItem = lm.findLastVisibleItemPosition()
 
-                        if (lastVisibleItem < totalCount.minus(5) && !isFetching && canFetchMore) {
+                        if (lastVisibleItem > totalCount.minus(5) && !isFetching.get()) {
                             fetchMore.invoke()
                         }
 

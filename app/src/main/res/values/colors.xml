@@ -7,6 +7,9 @@
     <color name="primaryDark">#28323A</color>
     <color name="accent">#F44336</color>
 
+    <!--basic color-->
+    <color name="white">#F7F7F7</color>
+
     <!--text-->
     <color name="textMainLight">#E9E9E9</color>
     <color name="textMainGrey">#979797</color>
@@ -19,6 +22,7 @@
     <color name="backgroundDarkTransparent">#72000000</color>
     <color name="backgroundLightBlue">#F4F4FD</color>
 
-
+    <color name="win">#3A9135</color>
+    <color name="lose">#B83030</color>
 
 </resources>

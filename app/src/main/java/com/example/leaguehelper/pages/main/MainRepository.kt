@@ -29,7 +29,7 @@ class MainRepository(
                 val newVersion = remoteVersions.first()
                 return@concatMap if (localVersion?.isOlderThan(newVersion) != false) {
                     // update localVersion
-                    val config = ConfigData(newVersion, System.currentTimeMillis())
+                    val config = ConfigData(newVersion, System.currentTimeMillis(), configData.value?.summoner)
                     configDataDao.insertOrUpdateConfigData(config)
                     // update champions form remote
                     staticDataAPI.getChampions(newVersion, language)

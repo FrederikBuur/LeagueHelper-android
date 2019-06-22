@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import android.view.View
 import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableList
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -22,6 +23,8 @@ class ProfileViewModel(
     //private val accountId: String // TODO create custom factory
 ) : AndroidViewModel(application) {
 
+    private val MATCH_AMOUNT_TO_FETCH = 10
+
     private val accountId = "QBP6sESg5Y_gIhjQfjf-yK-LJbMHjV-b1oM9mzL67-0" // todo temp
 
     private val disposable = CompositeDisposable()
@@ -32,6 +35,7 @@ class ProfileViewModel(
     // data binding
     val matchItemBinding: ItemBinding<MatchHistoryItemViewModel>
     val observableMatches: ObservableList<MatchHistoryItemViewModel>
+    val isFetching: ObservableBoolean
 
     init {
         val matchDao = LeagueHelperDatabase.getInstance(application).matchDao()
@@ -39,20 +43,32 @@ class ProfileViewModel(
         matches = repo.matches
         matchItemBinding = itemBindingOf(BR.viewModel, R.layout.item_profile_match_history)
         observableMatches = ObservableArrayList()
+        isFetching = ObservableBoolean(false)
         getMatches()
     }
 
-    val fetchMore = { getMatches(observableMatches.size, observableMatches.size + 20) }
+    val fetchMore = {
+        getMatches(observableMatches.size, observableMatches.size + MATCH_AMOUNT_TO_FETCH)
+    }
 
     fun addMatchesToViewModel(matchesList: List<Match>) {
-        matchesList.forEach {
-            observableMatches.add(MatchHistoryItemViewModel(it, onMatchClicked))
+        val trimmedList = if (matchesList.size > MATCH_AMOUNT_TO_FETCH) {
+            matchesList.subList(MATCH_AMOUNT_TO_FETCH, matchesList.size)
+        } else {
+            matchesList
+        }
+        trimmedList.forEach { match ->
+            observableMatches.add(MatchHistoryItemViewModel(match, onMatchClicked))
         }
     }
 
-    private fun getMatches(beginIndex: Int = 0, endIndex: Int = 10) {
+    private fun getMatches(beginIndex: Int = 0, endIndex: Int = MATCH_AMOUNT_TO_FETCH) {
         disposable += repo.fetchMatches(accountId, beginIndex, endIndex)
+            .doOnSubscribe {
+                isFetching.set(true)
+            }
             .doOnComplete {
+                isFetching.set(false)
                 Log.d(this.toString(), "matches fetched")
             }
             .subscribe({}, {
