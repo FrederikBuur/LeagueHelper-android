@@ -25,7 +25,7 @@ class ProfileViewModel(
 
     private val MATCH_AMOUNT_TO_FETCH = 10
 
-    private val accountId = "QBP6sESg5Y_gIhjQfjf-yK-LJbMHjV-b1oM9mzL67-0" // todo temp
+    private val accountId = "QV1cGw6nnNz0L4quc7uxu_jbNtv98iak52Z8zCzkjvUYOZM" // todo temp
 
     private val disposable = CompositeDisposable()
     private val repo: ProfileRepository
@@ -39,7 +39,8 @@ class ProfileViewModel(
 
     init {
         val matchDao = LeagueHelperDatabase.getInstance(application).matchDao()
-        repo = ProfileRepository(matchDao)
+        val championDao = LeagueHelperDatabase.getInstance(application).championDao()
+        repo = ProfileRepository(matchDao, championDao)
         matches = repo.matches
         matchItemBinding = itemBindingOf(BR.viewModel, R.layout.item_profile_match_history)
         observableMatches = ObservableArrayList()
@@ -58,7 +59,7 @@ class ProfileViewModel(
             matchesList
         }
         trimmedList.forEach { match ->
-            observableMatches.add(MatchHistoryItemViewModel(match, onMatchClicked))
+            observableMatches.add(MatchHistoryItemViewModel(match, accountId, onMatchClicked, repo))
         }
     }
 

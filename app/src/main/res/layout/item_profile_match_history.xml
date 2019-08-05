@@ -78,7 +78,8 @@
 			android:layout_alignParentTop="true"
 			android:layout_alignParentStart="true"
 			android:layout_marginStart="@dimen/margin_36"
-			android:src="@color/primaryLight"/>
+			android:src="@color/primaryLight"
+			app:imageUrl="@{viewModel.championUrl}"/>
 
 	</RelativeLayout>
 

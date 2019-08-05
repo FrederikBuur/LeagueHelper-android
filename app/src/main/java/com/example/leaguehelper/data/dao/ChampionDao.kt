@@ -18,4 +18,8 @@ interface ChampionDao {
 
     @Query("SELECT * FROM champion_table WHERE id = :id LIMIT 1")
     fun getChampion(id: String): LiveData<Champion>
+
+    @Query("SELECT * FROM champion_table WHERE `key` = :key LIMIT 1")
+    suspend fun getChampionSuspend(key: Int): Champion?
+
 }

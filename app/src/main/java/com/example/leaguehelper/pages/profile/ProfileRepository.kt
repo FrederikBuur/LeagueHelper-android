@@ -1,16 +1,19 @@
 package com.example.leaguehelper.pages.profile
 
+import com.example.leaguehelper.data.dao.ChampionDao
 import com.example.leaguehelper.data.dao.MatchDao
 import com.example.leaguehelper.data.networking.riot.LeagueServiceGenerator
 import com.example.leaguehelper.models.match.Match
 import com.example.leaguehelper.models.match.MatchesResponse
+import com.example.leaguehelper.models.staticdata.champion.Champion
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.toObservable
 import io.reactivex.schedulers.Schedulers
 
 class ProfileRepository(
-    private val matchDao: MatchDao
+    private val matchDao: MatchDao,
+    private val championDao: ChampionDao
 ) {
 
     private val tempAcc = "QBP6sESg5Y_gIhjQfjf-yK-LJbMHjV-b1oM9mzL67-0"
@@ -38,6 +41,10 @@ class ProfileRepository(
             .doOnComplete {
                 matchDao.insertOrUpdateMatches(m)
             }
+    }
+
+    suspend fun getChampionByKey(id: Int) : Champion? {
+        return championDao.getChampionSuspend(id)
     }
 
 }
