@@ -6,7 +6,7 @@
 
 	<fragment
 		android:name="com.example.leaguehelper.pages.profile.ProfileFragment"
-		tools:layout="@layout/fragment_profile" android:id="@+id/destinationProfile"/>
+		tools:layout="@layout/view_profile" android:id="@+id/destinationProfile"/>
 	<fragment android:id="@+id/destinationChampions"
 			  android:name="com.example.leaguehelper.pages.champions.ChampionsFragment"
 			  tools:layout="@layout/fragment_champions">

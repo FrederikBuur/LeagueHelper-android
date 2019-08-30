@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.leaguehelper.pages.profile.ProfileLoaderViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/profileToolbar"
+            layout="@layout/item_toolbar"
+            app:viewModel="@{viewModel.toolbar}"/>
+
+        <com.example.leaguehelper.util.viewswitcher.BindingViewSwitcher
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inAnimation="@anim/fade_in"
+            android:outAnimation="@anim/fade_out"
+            app:item="@{viewModel.item}"
+            app:itemBinding="@{viewModel.itemBinding}" />
+
+    </LinearLayout>
+
+</layout>

@@ -5,7 +5,7 @@
 	<data>
 		<variable
 			name="viewModel"
-			type="com.example.leaguehelper.pages.profile.MatchHistoryItemViewModel"/>
+			type="com.example.leaguehelper.pages.profile.ProfileMatchItemViewModel"/>
 	</data>
 
 	<RelativeLayout

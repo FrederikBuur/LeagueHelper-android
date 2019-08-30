@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-	<data>
+    <data>
 
-		<variable name="viewModel"
-				  type="com.example.leaguehelper.pages.uiwidgets.ToolBarViewModel"/>
+        <variable
+            name="viewModel"
+            type="com.example.leaguehelper.pages.uiwidgets.ToolBarViewModel" />
 
-	</data>
+    </data>
 
-	<androidx.appcompat.widget.Toolbar
-		android:layout_width="match_parent"
-		android:layout_height="?attr/actionBarSize"
-		android:background="@color/primary"
-		android:elevation="@dimen/margin_8"
-		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-		app:title="@{viewModel.title}"
-		app:titleTextColor="@color/textMainLight">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/genericToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary"
+        android:elevation="@dimen/margin_8"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="@{viewModel.title}"
+        app:titleTextColor="@color/textMainLight"
+        tools:title="Toolbar title">
 
 
-	</androidx.appcompat.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
 </layout>

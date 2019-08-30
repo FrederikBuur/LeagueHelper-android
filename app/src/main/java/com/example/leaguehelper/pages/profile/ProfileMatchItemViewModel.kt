@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MatchHistoryItemViewModel(
+class ProfileMatchItemViewModel(
     val match: Match,
     private val accountId: String,
     private val onMatchClicked: (Match, View) -> Unit,
@@ -74,4 +74,10 @@ class MatchHistoryItemViewModel(
         return "$min:$sec"
     }
 
+}
+
+fun Match.toProfileMatchItemViewModel(
+    accountId: String, onMatchClicked: (Match, View) -> Unit, repo: ProfileRepository
+): ProfileMatchItemViewModel {
+    return ProfileMatchItemViewModel(this, accountId, onMatchClicked, repo)
 }

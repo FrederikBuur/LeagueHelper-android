@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -16,7 +17,8 @@ import com.example.leaguehelper.databinding.FragmentProfileBinding
 import com.example.leaguehelper.models.match.Match
 import com.example.leaguehelper.pages.LeagueFragment
 import com.example.leaguehelper.util.viewmodelfactory.ProfileViewModelFactory
-import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.view_profile.*
+import kotlinx.android.synthetic.main.view_profile_loader.*
 
 class ProfileFragment : LeagueFragment() {
 
@@ -29,14 +31,14 @@ class ProfileFragment : LeagueFragment() {
                         view
                     )
                 }
-            ).get(ProfileViewModel::class.java)
+            ).get(ProfileLoaderViewModel::class.java)
         } ?: run {
-            ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+            ViewModelProviders.of(this).get(ProfileLoaderViewModel::class.java)
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding: FragmentProfileBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
+        val binding: FragmentProfileBinding = DataBindingUtil.inflate(inflater, R.layout.view_profile, container, false)
         binding.viewModel = profileViewModel
         binding.lifecycleOwner = this
         return binding.root
@@ -45,12 +47,10 @@ class ProfileFragment : LeagueFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        profileCollapsingToolbar.setupWithNavController(profileToolBar, findNavController())
-        profileToolBar.title = "Summoner Name"
+//        profileCollapsingToolbar.setupWithNavController(profileToolBar, findNavController())
+        (profileToolbar as? Toolbar)?.setupWithNavController(findNavController())
+//        profileToolBar.title = "Summoner Name"
 
-        profileViewModel.matches.observe(this, Observer { matches ->
-           profileViewModel.addMatchesToViewModel(matches)
-        })
     }
 
     private fun navigateToMatchDetail(match: Match, view: View) {

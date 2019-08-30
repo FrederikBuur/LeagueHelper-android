@@ -2,6 +2,7 @@ package com.example.leaguehelper.data.networking.riot
 
 import com.example.leaguehelper.models.match.Match
 import com.example.leaguehelper.models.match.MatchesResponse
+import com.example.leaguehelper.models.summoner.Summoner
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -20,5 +21,10 @@ interface IRiotDataAPI {
     fun getMatchById(
         @Path("matchId") matchId: Long
     ): Observable<Match>
+
+    @GET("/lol/summoner/v4/summoners/by-name/{summonerName}")
+    suspend fun getSummonerByName(
+        @Path("summonerName") summonerName: String
+    ): Summoner
 
 }

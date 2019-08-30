@@ -1,26 +1,13 @@
 <resources>
 
+	<!--shared-->
+	<string name="retry">Retry</string>
+
+	<!--generics-->
+	<string name="error_view_message">Something went wrong. Click the button to reload the content</string>
+
+	<!--app strings-->
 	<string name="app_name">League Helper</string>
-	<string name="test">Hello blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd \n
-		asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello
-		blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment
-		ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd
-		\n asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd \n
-		asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello
-		blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment
-		ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd
-		\n asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd \n
-		asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello blank fragment ashbdasbdasjbd \n asdasdasdHello
-		blank fragment ashbdasbdasjbd \n THE END
-	</string>
-
-	<string name="sample_tekst">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-		magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-		Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	</string>
-
 	<string name="fallback_version">9.2.1</string>
 	<string name="static_data_language_code">en_GB</string>
 
@@ -28,5 +15,20 @@
 	<string name="champion_detail_builds_title">Builds</string>
 	<string name="champion_detail_spells_title">Spells</string>
 	<string name="champion_detail_skins_title">Skins</string>
+
+	<!--placeholder text-->
+	<string name="sample_text_small">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+	</string>
+	<string name="sample_text_medium">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+		magna aliqua.
+	</string>
+	<string name="sample_text_large">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+		magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+		Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</string>
 
 </resources>
