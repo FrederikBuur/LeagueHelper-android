@@ -1,4 +1,4 @@
-package com.example.leaguehelper.util.viewswitcher
+package com.example.leaguehelper.util.genericviews.viewswitcher
 
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.leaguehelper.R
-import com.example.leaguehelper.pages.LeagueFragment
+import com.example.leaguehelper.util.LeagueFragment
 
 class ChampionDetailSkinsFragment : LeagueFragment() {
 

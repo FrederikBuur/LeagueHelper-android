@@ -15,7 +15,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.leaguehelper.R
 import com.example.leaguehelper.databinding.FragmentChampionsBinding
 import com.example.leaguehelper.models.staticdata.champion.Champion
-import com.example.leaguehelper.pages.LeagueFragment
+import com.example.leaguehelper.util.LeagueFragment
 import com.example.leaguehelper.util.viewmodelfactory.ChampionsViewModelFactory
 import kotlinx.android.synthetic.main.fragment_champions.*
 

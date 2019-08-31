@@ -1,4 +1,4 @@
-package com.example.leaguehelper.util.viewswitcher
+package com.example.leaguehelper.util.genericviews.viewswitcher
 
 import android.content.Context
 import android.os.Handler

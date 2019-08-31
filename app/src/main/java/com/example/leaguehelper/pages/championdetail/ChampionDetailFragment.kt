@@ -12,7 +12,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
 import com.example.leaguehelper.R
 import com.example.leaguehelper.models.staticdata.champion.Champion
-import com.example.leaguehelper.pages.LeagueFragment
+import com.example.leaguehelper.util.LeagueFragment
 import com.example.leaguehelper.pages.championdetail.championdetailbuilds.ChampionDetailBuildsFragment
 import com.example.leaguehelper.pages.championdetail.championdetailskins.ChampionDetailSkinsFragment
 import com.example.leaguehelper.pages.championdetail.championdetailspells.ChampionDetailSpellsFragment

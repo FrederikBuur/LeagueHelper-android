@@ -18,7 +18,7 @@
             layout="@layout/item_toolbar"
             app:viewModel="@{viewModel.toolbar}"/>
 
-        <com.example.leaguehelper.util.viewswitcher.BindingViewSwitcher
+        <com.example.leaguehelper.util.genericviews.viewswitcher.BindingViewSwitcher
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inAnimation="@anim/fade_in"

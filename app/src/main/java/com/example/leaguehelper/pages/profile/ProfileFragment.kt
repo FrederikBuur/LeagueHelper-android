@@ -14,7 +14,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.leaguehelper.R
 import com.example.leaguehelper.databinding.ViewProfileLoaderBinding
 import com.example.leaguehelper.models.match.Match
-import com.example.leaguehelper.pages.LeagueFragment
+import com.example.leaguehelper.util.LeagueFragment
 import com.example.leaguehelper.util.viewmodelfactory.ProfileViewModelFactory
 import kotlinx.android.synthetic.main.view_profile_loader.*
 

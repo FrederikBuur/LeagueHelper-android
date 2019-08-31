@@ -3,7 +3,7 @@ package com.example.leaguehelper.pages.championdetail.championdetailbuilds
 
 import android.os.Bundle
 import android.view.View
-import com.example.leaguehelper.pages.LeagueFragment
+import com.example.leaguehelper.util.LeagueFragment
 
 class ChampionDetailBuildsFragment : LeagueFragment() {
 

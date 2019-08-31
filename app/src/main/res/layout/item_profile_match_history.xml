@@ -51,7 +51,7 @@
 
 						<TextView
 							android:text="@{viewModel.gameLength()}"
-							style="@style/TextSmall"
+							style="@style/LeagueTextSmall"
 							android:layout_gravity="end"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
 
 						<TextView
 							android:text="@{viewModel.timestamp()}"
-							style="@style/TextSmall"
+							style="@style/LeagueTextSmall"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							tools:text="21 May 2017"/>

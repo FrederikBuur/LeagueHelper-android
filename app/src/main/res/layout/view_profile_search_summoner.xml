@@ -14,27 +14,30 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_48"
+            android:clipToPadding="false"
+            android:layout_gravity="center">
 
             <TextView
-                android:text="Type in your summoner name"
+                android:text="@string/profile_search_summoner_title"
+                style="@style/LeagueTextBig"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
+                android:layout_height="wrap_content"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Summoner name..."
-                android:layout_marginStart="@dimen/margin_48"
-                android:layout_marginEnd="@dimen/margin_48"/>
+                android:hint="@string/profile_search_summoner_hint"
+                android:layout_marginTop="@dimen/margin_24"
+                android:layout_marginBottom="@dimen/margin_24"/>
 
             <Button
-                android:text="Search"
+                android:text="@string/search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                style="@style/LeaguePrimaryButton"/>
 
         </LinearLayout>
 

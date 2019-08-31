@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.leaguehelper.R
-import com.example.leaguehelper.pages.LeagueFragment
+import com.example.leaguehelper.util.LeagueFragment
 import java.util.*
 
 class ChampionDetailPagerAdapter(val context: Context?, private val fragList: LinkedList<LeagueFragment>, fm: FragmentManager) : FragmentStatePagerAdapter(fm) {

@@ -2,6 +2,7 @@
 
 	<!--shared-->
 	<string name="retry">Retry</string>
+	<string name="search">Search</string>
 
 	<!--generics-->
 	<string name="error_view_message">Something went wrong. Click the button to reload the content</string>
@@ -15,6 +16,10 @@
 	<string name="champion_detail_builds_title">Builds</string>
 	<string name="champion_detail_spells_title">Spells</string>
 	<string name="champion_detail_skins_title">Skins</string>
+
+	<!--Profile-->
+	<string name="profile_search_summoner_title">Type in your summoner name</string>
+	<string name="profile_search_summoner_hint">Summoner name…</string>
 
 	<!--placeholder text-->
 	<string name="sample_text_small">

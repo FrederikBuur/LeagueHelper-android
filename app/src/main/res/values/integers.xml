@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<integer name="champions_span_count">4</integer>
+
+	<integer name="wrap_content_int">-2</integer>
+	<integer name="match_parent_int">-1</integer>
+
 </resources>

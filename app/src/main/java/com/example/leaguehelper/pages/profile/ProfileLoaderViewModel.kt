@@ -10,9 +10,9 @@ import com.example.leaguehelper.R
 import com.example.leaguehelper.data.LeagueHelperDatabase
 import com.example.leaguehelper.models.match.Match
 import com.example.leaguehelper.models.summoner.Summoner
-import com.example.leaguehelper.pages.uiwidgets.ToolBarViewModel
-import com.example.leaguehelper.util.generics.ErrorViewModel
-import com.example.leaguehelper.util.generics.LoadingViewModel
+import com.example.leaguehelper.util.genericviews.ToolBarViewModel
+import com.example.leaguehelper.util.genericviews.ErrorViewModel
+import com.example.leaguehelper.util.genericviews.LoadingViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import kotlinx.coroutines.CoroutineScope
@@ -55,7 +55,7 @@ class ProfileLoaderViewModel(
 
     val item = ObservableField<Any>(loadingViewModel)
 
-    val itemBinding = OnItemBindClass<Any>()
+    val itemBinding: OnItemBindClass<Any> = OnItemBindClass<Any>()
         .map(LoadingViewModel::class.java, BR.viewModel, R.layout.view_generic_loading)
         .map(ErrorViewModel::class.java, BR.viewModel, R.layout.view_generic_error)
         .map(ProfileViewModel::class.java, BR.viewModel, R.layout.view_profile)

@@ -1,4 +1,4 @@
-package com.example.leaguehelper.pages
+package com.example.leaguehelper.util
 
 import com.example.leaguehelper.pages.main.MainActivity
 import com.trello.rxlifecycle3.components.support.RxFragment

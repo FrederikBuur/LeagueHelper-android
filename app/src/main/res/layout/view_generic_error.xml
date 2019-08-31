@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.leaguehelper.util.generics.ErrorViewModel" />
+            type="com.example.leaguehelper.util.genericviews.ErrorViewModel" />
     </data>
 
     <FrameLayout
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.message}"
                 android:textAlignment="center"
-                style="@style/TextMedium"
+                style="@style/LeagueTextMedium"
                 android:layout_marginTop="@dimen/margin_12"
                 android:layout_marginStart="@dimen/margin_62"
                 android:layout_marginEnd="@dimen/margin_62"

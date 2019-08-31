@@ -1,4 +1,4 @@
-package com.example.leaguehelper.util.generics
+package com.example.leaguehelper.util.genericviews
 
 import com.example.leaguehelper.R
 
