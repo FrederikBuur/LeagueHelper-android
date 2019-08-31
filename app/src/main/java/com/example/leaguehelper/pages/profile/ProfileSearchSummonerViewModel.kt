@@ -7,7 +7,6 @@ import com.example.leaguehelper.util.ErrorHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 data class ProfileSearchSummonerViewModel(
     private val repository: ProfileRepository,
@@ -24,19 +23,16 @@ data class ProfileSearchSummonerViewModel(
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 errorMessage.set("")
-                repository.fetchSummonerByName(searchEditText.text.toString().trim()).apply {
-                    updateContentWithSummoner(this)
-                }
+                repository.fetchSummonerByName(searchEditText.text.toString().trim())
+                    .also { summoner ->
+                        onSummonerFound.invoke(summoner)
+                    }
             } catch (e: Exception) {
-                errorMessage.set(ErrorHandler.getErrorMessage(e))
+                ErrorHandler.getErrorMessage(this@ProfileSearchSummonerViewModel.toString(), e)
+                    .also { msg ->
+                        errorMessage.set(msg)
+                    }
             }
         }
     }
-
-    private suspend fun updateContentWithSummoner(summoner: Summoner) {
-        withContext(Dispatchers.Main) {
-            onSummonerFound.invoke(summoner)
-        }
-    }
-
 }

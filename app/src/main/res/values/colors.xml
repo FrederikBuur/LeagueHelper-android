@@ -9,6 +9,7 @@
 
     <!--basic color-->
     <color name="white">#F7F7F7</color>
+    <color name="transparent">#00000000</color>
 
     <!--text-->
     <color name="textMainLight">#E9E9E9</color>

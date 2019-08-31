@@ -1,6 +1,5 @@
 package com.example.leaguehelper.pages.profile
 
-import android.util.Log
 import android.view.View
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
@@ -8,9 +7,14 @@ import com.example.leaguehelper.BR
 import com.example.leaguehelper.R
 import com.example.leaguehelper.models.match.Match
 import com.example.leaguehelper.models.summoner.Summoner
+import com.example.leaguehelper.util.ErrorHandler
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.plusAssign
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import me.tatarka.bindingcollectionadapter2.itembindings.OnItemBindClass
+import java.lang.Exception
 
 data class ProfileViewModel(
     private val summoner: Summoner,
@@ -23,7 +27,7 @@ data class ProfileViewModel(
 
     val isFetching = ObservableBoolean(false)
     val items = ObservableArrayList<Any>()
-    val itemView = OnItemBindClass<Any>()
+    val itemView: OnItemBindClass<Any> = OnItemBindClass<Any>()
         .map(ProfileInfoItemViewModel::class.java, BR.viewModel, R.layout.item_profile_info)
         .map(ProfileMatchItemViewModel::class.java, BR.viewModel, R.layout.item_profile_match_history)
 
@@ -37,29 +41,25 @@ data class ProfileViewModel(
     }
 
     private fun getMatches(beginIndex: Int = 0, endIndex: Int = MATCH_AMOUNT_TO_FETCH) {
-        disposable += repo.fetchMatches(summoner.accountId, beginIndex, endIndex)
-            .doOnSubscribe {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
                 isFetching.set(true)
-            }
-            .doOnComplete {
+                repo.fetchMatches(summoner.accountId, beginIndex, endIndex)
+                    .also { matches ->
+                        withContext(Dispatchers.Main) {
+                            items.addAll(mapToViewModels(matches))
+                        }
+                        isFetching.set(false)
+                    }
+            } catch (e: Exception) {
                 isFetching.set(false)
-                Log.d(this.toString(), "matches fetched")
+                ErrorHandler.getErrorMessage(this@ProfileViewModel.toString(), e)
             }
-            .subscribe({}, {
-                isFetching.set(false)
-                Log.d(this.toString(), it.message)
-            })
+        }
     }
 
     private fun mapToViewModels(matchesList: List<Match>): List<ProfileMatchItemViewModel> =
-//        val trimmedList = if (matchesList.size > MATCH_AMOUNT_TO_FETCH) {
-//            matchesList.subList(MATCH_AMOUNT_TO_FETCH, matchesList.size)
-//        } else {
-//            matchesList
-//        }
         matchesList.map { m ->
             m.toProfileMatchItemViewModel(summoner.accountId, onMatchClicked, repo)
         }
-
-
 }

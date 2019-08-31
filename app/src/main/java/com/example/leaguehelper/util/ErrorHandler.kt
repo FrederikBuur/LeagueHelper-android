@@ -1,11 +1,11 @@
 package com.example.leaguehelper.util
 
+import android.util.Log
 import retrofit2.HttpException
 
 object ErrorHandler {
 
-    fun getErrorMessage(e: Exception): String {
-
+    fun getErrorMessage(caller: String, e: Exception): String {
         return when(e) {
             is HttpException -> {
                 when(e.code()) {
@@ -32,6 +32,8 @@ object ErrorHandler {
             else -> {
                 "Unsupported - ${e.localizedMessage}"
             }
+        }.also { msg ->
+            Log.e(caller, msg)
         }
 
     }

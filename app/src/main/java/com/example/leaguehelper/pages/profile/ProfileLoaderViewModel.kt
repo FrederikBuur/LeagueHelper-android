@@ -10,11 +10,11 @@ import com.example.leaguehelper.R
 import com.example.leaguehelper.data.LeagueHelperDatabase
 import com.example.leaguehelper.models.match.Match
 import com.example.leaguehelper.models.summoner.Summoner
+import com.example.leaguehelper.util.ErrorHandler
 import com.example.leaguehelper.util.genericviews.ToolBarViewModel
 import com.example.leaguehelper.util.genericviews.ErrorViewModel
 import com.example.leaguehelper.util.genericviews.LoadingViewModel
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.plusAssign
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -78,35 +78,40 @@ class ProfileLoaderViewModel(
             summoner.set(it)
             fetchMatches(it)
         } ?: run {
-            withContext(Dispatchers.Main) {
-                item.set(
-                    ProfileSearchSummonerViewModel(
-                        onSummonerFound = { summoner ->
-                            item.set(loadingViewModel)
-                            fetchMatches(summoner)
-                        },
-                        repository = repo
-                    )
+            item.set(
+                ProfileSearchSummonerViewModel(
+                    onSummonerFound = { summoner ->
+                        item.set(loadingViewModel)
+                        fetchMatches(summoner)
+                    },
+                    repository = repo
                 )
-            }
+            )
         }
     }
 
     private fun fetchMatches(sum: Summoner, beginIndex: Int = 0, endIndex: Int = MATCH_AMOUNT_TO_FETCH) {
-        disposable += repo.fetchMatches(sum.accountId, beginIndex, endIndex)
-            .subscribe({
-                item.set(
-                    ProfileViewModel(
-                        summoner = sum,
-                        matches = repo.matches.value ?: emptyList(),
-                        disposable = disposable,
-                        onMatchClicked = onMatchClicked,
-                        repo = repo
-                    )
-                )
-            }, {
-                item.set(errorViewModel.setErrorMessage(it.localizedMessage))
-            })
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                repo.fetchMatches(sum.accountId, beginIndex, endIndex)
+                    .also { matches ->
+                        item.set(
+                            ProfileViewModel(
+                                summoner = sum,
+                                matches = matches,
+                                disposable = disposable,
+                                onMatchClicked = onMatchClicked,
+                                repo = repo
+                            )
+                        )
+                    }
+            } catch (e: Exception) {
+                ErrorHandler.getErrorMessage(this@ProfileLoaderViewModel.toString(), e)
+                    .also { msg ->
+                        item.set(errorViewModel.setErrorMessage(msg))
+                    }
+            }
+        }
     }
 
     override fun onCleared() {
