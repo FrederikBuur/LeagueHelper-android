@@ -6,7 +6,7 @@ import com.example.leaguehelper.pages.champions.ChampionsRepository
 
 object LeagueToaster {
 
-    fun notifyOfError(context: Context, msg: String, t: Throwable) {
+    fun makeErrorToast(context: Context, msg: String, t: Throwable) {
         Toast.makeText(context, "$msg, ${t.localizedMessage}", Toast.LENGTH_LONG).show()
         t.printStackTrace()
     }

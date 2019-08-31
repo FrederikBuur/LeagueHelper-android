@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.leaguehelper.pages.profile.ProfileSearchSummonerViewModel" />
+
+        <import type="android.view.View" />
+
     </data>
 
     <FrameLayout
@@ -12,32 +18,42 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/margin_48"
+            android:layout_gravity="center"
             android:clipToPadding="false"
-            android:layout_gravity="center">
+            android:orientation="vertical"
+            android:padding="@dimen/margin_48">
 
             <TextView
-                android:text="@string/profile_search_summoner_title"
                 style="@style/LeagueTextBig"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="@string/profile_search_summoner_title" />
 
             <EditText
+                android:id="@+id/searchInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/profile_search_summoner_hint"
                 android:layout_marginTop="@dimen/margin_24"
-                android:layout_marginBottom="@dimen/margin_24"/>
+                android:hint="@string/profile_search_summoner_hint"
+                android:text="Bobby" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_24"
+                android:text="@{viewModel.errorMessage}"
+                android:textColor="@color/textMainError"
+                tools:text="404 - Not found" />
 
             <Button
-                android:text="@string/search"
+                style="@style/LeaguePrimaryButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                style="@style/LeaguePrimaryButton"/>
+                android:onClick="@{() -> viewModel.onSearchClicked(searchInput)}"
+                android:text="@string/search" />
 
         </LinearLayout>
 

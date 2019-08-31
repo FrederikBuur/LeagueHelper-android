@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class LeagueServiceGenerator {
 
     companion object {
-        const val API_KEY = "RGAPI-a1aa12c4-1ab5-4e8e-a266-9929abdcbf94"
+        const val API_KEY = "RGAPI-8380522f-f1d6-4f6e-83b9-8a99ddfd628a"
         private const val BASE_URL = "https://euw1.api.riotgames.com"
 
         fun getBaseUrl(region: Region) = "https://${region.name}.api.riotgames.com" // TODO support different regions

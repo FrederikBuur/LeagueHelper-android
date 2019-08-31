@@ -46,7 +46,7 @@ class ProfileLoaderViewModel(
             summoner.get()?.let {
                 fetchMatches(it)
             } ?: run {
-                throw Exception()
+                throw Exception("${this@ProfileLoaderViewModel} WTF how is this possible?")
             }
         }
     )
@@ -74,7 +74,8 @@ class ProfileLoaderViewModel(
     }
 
     private suspend fun showProfileOrFindSummoner() {
-        repo.getSummoner()?.let {
+        repo.getConfigData()?.summoner?.let {
+            summoner.set(it)
             fetchMatches(it)
         } ?: run {
             withContext(Dispatchers.Main) {
@@ -104,8 +105,7 @@ class ProfileLoaderViewModel(
                     )
                 )
             }, {
-                item.set(errorViewModel)
-                Log.d(this.toString(), it.message)
+                item.set(errorViewModel.setErrorMessage(it.localizedMessage))
             })
     }
 

@@ -14,6 +14,7 @@
     <color name="textMainLight">#E9E9E9</color>
     <color name="textMainGrey">#979797</color>
     <color name="textMainDark">#363636</color>
+    <color name="textMainError">#B44A4A</color>
 
     <!--icon-->
     <color name="iconWhite">#F5F5F5</color>
