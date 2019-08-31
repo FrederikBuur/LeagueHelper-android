@@ -7,16 +7,38 @@
             type="com.example.leaguehelper.pages.profile.ProfileSearchSummonerViewModel" />
     </data>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:text="find summoner here"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
 
-    </LinearLayout>
+            <TextView
+                android:text="Type in your summoner name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Summoner name..."
+                android:layout_marginStart="@dimen/margin_48"
+                android:layout_marginEnd="@dimen/margin_48"/>
+
+            <Button
+                android:text="Search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
 </layout>

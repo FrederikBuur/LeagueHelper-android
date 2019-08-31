@@ -15,13 +15,16 @@ import com.example.leaguehelper.util.generics.ErrorViewModel
 import com.example.leaguehelper.util.generics.LoadingViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import me.tatarka.bindingcollectionadapter2.itembindings.OnItemBindClass
 import java.lang.Exception
 
 class ProfileLoaderViewModel(
     application: Application,
-    private val onMatchClicked: (Match, View) -> Unit,
-    private val summoner: Summoner? // TODO create custom factory
+    private val onMatchClicked: (Match, View) -> Unit
 ) : AndroidViewModel(application) {
 
     private val MATCH_AMOUNT_TO_FETCH = 10
@@ -31,6 +34,8 @@ class ProfileLoaderViewModel(
     private val disposable = CompositeDisposable()
     private val repo: ProfileRepository
 
+    private val summoner = ObservableField<Summoner>()
+
     private val loadingViewModel = LoadingViewModel()
 
     private val errorViewModel = ErrorViewModel(
@@ -38,7 +43,11 @@ class ProfileLoaderViewModel(
         icon = R.drawable.ic_error,
         onRetryClicked = {
             item.set(loadingViewModel)
-            fetchMatches(summoner)
+            summoner.get()?.let {
+                fetchMatches(it)
+            } ?: run {
+                throw Exception()
+            }
         }
     )
 
@@ -50,42 +59,54 @@ class ProfileLoaderViewModel(
         .map(LoadingViewModel::class.java, BR.viewModel, R.layout.view_generic_loading)
         .map(ErrorViewModel::class.java, BR.viewModel, R.layout.view_generic_error)
         .map(ProfileViewModel::class.java, BR.viewModel, R.layout.view_profile)
+        .map(ProfileSearchSummonerViewModel::class.java, BR.viewModel, R.layout.view_profile_search_summoner)
 
 
     init {
         val matchDao = LeagueHelperDatabase.getInstance(application).matchDao()
         val championDao = LeagueHelperDatabase.getInstance(application).championDao()
-        repo = ProfileRepository(matchDao, championDao)
+        val configData = LeagueHelperDatabase.getInstance(application).configDataDao()
+        repo = ProfileRepository(matchDao, championDao, configData)
 
-        summoner?.let {
-            fetchMatches(it)
-        } ?: run {
-
+        CoroutineScope(Dispatchers.IO).launch {
+            showProfileOrFindSummoner()
         }
     }
 
-
-    private fun fetchMatches(sum: Summoner?, beginIndex: Int = 0, endIndex: Int = MATCH_AMOUNT_TO_FETCH) {
-        sum?.accountId?.let {
-            disposable += repo.fetchMatches(sum.accountId, beginIndex, endIndex)
-                .subscribe({
-                    item.set(
-                        ProfileViewModel(
-                            summoner = sum,
-                            matches = repo.matches.value ?: emptyList(),
-                            disposable = disposable,
-                            onMatchClicked = onMatchClicked,
-                            repo = repo
-                        )
-                    )
-                }, {
-                    item.set(errorViewModel)
-                    Log.d(this.toString(), it.message)
-                })
+    private suspend fun showProfileOrFindSummoner() {
+        repo.getSummoner()?.let {
+            fetchMatches(it)
         } ?: run {
-            throw Exception()
+            withContext(Dispatchers.Main) {
+                item.set(
+                    ProfileSearchSummonerViewModel(
+                        onSummonerFound = { summoner ->
+                            item.set(loadingViewModel)
+                            fetchMatches(summoner)
+                        },
+                        repository = repo
+                    )
+                )
+            }
         }
+    }
 
+    private fun fetchMatches(sum: Summoner, beginIndex: Int = 0, endIndex: Int = MATCH_AMOUNT_TO_FETCH) {
+        disposable += repo.fetchMatches(sum.accountId, beginIndex, endIndex)
+            .subscribe({
+                item.set(
+                    ProfileViewModel(
+                        summoner = sum,
+                        matches = repo.matches.value ?: emptyList(),
+                        disposable = disposable,
+                        onMatchClicked = onMatchClicked,
+                        repo = repo
+                    )
+                )
+            }, {
+                item.set(errorViewModel)
+                Log.d(this.toString(), it.message)
+            })
     }
 
     override fun onCleared() {

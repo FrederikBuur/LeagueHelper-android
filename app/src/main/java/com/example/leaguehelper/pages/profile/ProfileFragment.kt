@@ -8,16 +8,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.leaguehelper.R
-import com.example.leaguehelper.databinding.FragmentProfileBinding
+import com.example.leaguehelper.databinding.ViewProfileLoaderBinding
 import com.example.leaguehelper.models.match.Match
 import com.example.leaguehelper.pages.LeagueFragment
 import com.example.leaguehelper.util.viewmodelfactory.ProfileViewModelFactory
-import kotlinx.android.synthetic.main.view_profile.*
 import kotlinx.android.synthetic.main.view_profile_loader.*
 
 class ProfileFragment : LeagueFragment() {
@@ -38,7 +36,7 @@ class ProfileFragment : LeagueFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding: FragmentProfileBinding = DataBindingUtil.inflate(inflater, R.layout.view_profile, container, false)
+        val binding: ViewProfileLoaderBinding = DataBindingUtil.inflate(inflater, R.layout.view_profile_loader, container, false)
         binding.viewModel = profileViewModel
         binding.lifecycleOwner = this
         return binding.root

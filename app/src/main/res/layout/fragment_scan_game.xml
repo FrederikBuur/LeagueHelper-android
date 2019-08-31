@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-		xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-	<data>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.leaguehelper.pages.scangame.ScanGameFragment" />
+    </data>
 
-	</data>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundDefaultLight">
 
-	<FrameLayout
-		android:layout_width="match_parent" android:layout_height="match_parent"
-		tools:context=".pages.scangame.ScanGameFragment">
+        <include
+            android:id="@+id/scanGameToolbar"
+            layout="@layout/item_toolbar"
+            app:viewModel="@{viewModel.toolbar}"/>
 
-		<androidx.appcompat.widget.Toolbar
-			android:id="@+id/scanGameToolbar"
-			android:layout_width="match_parent"
-			android:layout_height="?attr/actionBarSize"
-			android:background="@color/primary"
-			android:elevation="@dimen/margin_8"
-			android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-			app:titleTextColor="@color/textMainLight"/>
+        <TextView
+            android:text="Scan your game here"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-		<!--<include layout="@layout/item_toolbar"-->
-				 <!--app:viewModel="@{viewModel.toolbarViewModel}"/>-->
-
-	</FrameLayout>
+    </LinearLayout>
 </layout>

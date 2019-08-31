@@ -19,9 +19,9 @@
     <color name="iconWhite">#F5F5F5</color>
 
     <!--background-->
-    <color name="backgroundDefaultLight">@color/backgroundLightBlue</color>
+    <color name="backgroundDefaultLight">@color/backgroundLight</color>
     <color name="backgroundDarkTransparent">#72000000</color>
-    <color name="backgroundLightBlue">#F4F4FD</color>
+    <color name="backgroundLight">#E9E9E9</color>
 
     <color name="win">#3A9135</color>
     <color name="lose">#B83030</color>
