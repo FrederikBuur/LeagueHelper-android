@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel
 import com.example.leaguehelper.BR
 import com.example.leaguehelper.R
 import com.example.leaguehelper.data.LeagueHelperDatabase
+import com.example.leaguehelper.models.ConfigData
 import com.example.leaguehelper.models.match.Match
 import com.example.leaguehelper.models.summoner.Summoner
 import com.example.leaguehelper.util.ErrorHandler

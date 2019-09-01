@@ -6,7 +6,7 @@ data class Summoner(
     val accountId: String,
     val puuid: String,
     val name: String,
-    val profileIcon: Int,
+    val profileIconId: Int,
     val revisionDate: Long,
     val summonerLevel: Int
 )

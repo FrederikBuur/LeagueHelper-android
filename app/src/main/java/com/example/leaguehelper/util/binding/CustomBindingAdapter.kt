@@ -3,6 +3,7 @@ package com.example.leaguehelper.util.binding
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.leaguehelper.util.ImageLoader

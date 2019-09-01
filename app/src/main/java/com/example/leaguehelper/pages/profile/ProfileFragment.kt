@@ -45,9 +45,7 @@ class ProfileFragment : LeagueFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        profileCollapsingToolbar.setupWithNavController(profileToolBar, findNavController())
         (profileToolbar as? Toolbar)?.setupWithNavController(findNavController())
-//        profileToolBar.title = "Summoner Name"
 
     }
 

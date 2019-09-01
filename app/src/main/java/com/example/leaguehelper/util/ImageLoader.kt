@@ -21,7 +21,7 @@ object ImageLoader {
         Glide.with(context)
             .load(imageSrc)
             .apply(
-                RequestOptions.centerCropTransform().fitCenter()
+                RequestOptions.centerCropTransform()
                     .placeholder(R.drawable.ic_account)
                     .error(R.drawable.ic_error)
             )

@@ -21,35 +21,12 @@ class ProfileRepository(
 ) {
     private val riotDataAPI = LeagueServiceGenerator.createRiotDataAPI()
 
-    val matches = matchDao.getAllMatches()
-
     suspend fun fetchMatches(accountId: String, beginIndex: Int, endIndex: Int): List<Match> {
         return riotDataAPI.getMatchesMetaData(accountId, beginIndex, endIndex)
             .matches.map { matchMetaData ->
             riotDataAPI.getMatchById(matchMetaData.gameId)
         }
     }
-
-//    fun fetchMatches1(accountId: String, beginIndex: Int, endIndex: Int): Observable<*> {
-//        val m = ArrayList<Match>()
-//        return riotDataAPI.getMatchesMetaData(accountId, beginIndex, endIndex)
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(Schedulers.io())
-//            .flatMap { matchesResponse ->
-//                return@flatMap Observable.fromIterable(matchesResponse.matches)
-//                    .concatMap { matchMetaData ->
-//                        riotDataAPI.getMatchById(matchMetaData.gameId)
-//                    }
-//            }
-//            .concatMap { match ->
-//                Observable.fromCallable {
-//                    m.add(match)
-//                }
-//            }
-//            .doOnComplete {
-//                matchDao.insertOrUpdateMatches(m)
-//            }
-//    }
 
     suspend fun fetchSummonerByName(name: String): Summoner {
         return riotDataAPI.getSummonerByName(name)

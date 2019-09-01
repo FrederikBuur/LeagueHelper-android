@@ -10,8 +10,8 @@ import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ProfileMatchItemViewModel(
-    val match: Match,
+data class ProfileMatchItemViewModel(
+    private val match: Match,
     private val accountId: String,
     private val onMatchClicked: (Match, View) -> Unit,
     private val repo: ProfileRepository

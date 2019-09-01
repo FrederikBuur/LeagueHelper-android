@@ -36,7 +36,7 @@ data class ProfileViewModel(
     }
 
     init {
-        items.add(ProfileInfoItemViewModel(summoner))
+        items.add(ProfileInfoItemViewModel(repo, summoner))
         items.addAll(mapToViewModels(matches))
     }
 
