@@ -1,6 +1,7 @@
 package com.example.leaguehelper.pages.profile
 
 import androidx.databinding.ObservableField
+import com.example.leaguehelper.models.leagueentry.LeagueEntry
 import com.example.leaguehelper.models.staticdata.Image
 import com.example.leaguehelper.models.summoner.Summoner
 import kotlinx.coroutines.CoroutineScope
@@ -14,6 +15,7 @@ data class ProfileInfoItemViewModel(
 ) {
 
     val profileIconUrl = ObservableField<String>()
+    val winrateString = ObservableField<String>()
 
     init {
         CoroutineScope(Dispatchers.IO).launch {
@@ -22,6 +24,11 @@ data class ProfileInfoItemViewModel(
     }
 
     private suspend fun setupView() {
+        fetchProfileIcon()
+        fetchLeagueEntries()
+    }
+
+    private suspend fun fetchProfileIcon() {
         repo.getConfigData()?.let { cd ->
             withContext(Dispatchers.Main) {
                 val url = Image.getProfileIconPath(cd.version, summoner.profileIconId)
@@ -30,4 +37,19 @@ data class ProfileInfoItemViewModel(
         }
     }
 
+    private suspend fun fetchLeagueEntries() {
+        repo.fetchLeagueEntries(summoner.id).also { entries ->
+            if (entries.isEmpty()) return
+
+            entries.singleOrNull { it.queueType == LeagueEntry.Queue.RANKED_SOLO_5 }?.let {
+
+            }
+//            entries.singleOrNull { it.queueType == LeagueEntry.Queue.RANKED_TFT }?.let {
+//
+//            }
+//            entries.singleOrNull { it.queueType == LeagueEntry.Queue.BLIND_PICK_5 }?.let {
+//
+//            }
+        }
+    }
 }

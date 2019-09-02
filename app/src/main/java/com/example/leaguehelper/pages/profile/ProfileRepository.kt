@@ -5,6 +5,7 @@ import com.example.leaguehelper.data.dao.ConfigDataDao
 import com.example.leaguehelper.data.dao.MatchDao
 import com.example.leaguehelper.data.networking.riot.LeagueServiceGenerator
 import com.example.leaguehelper.models.ConfigData
+import com.example.leaguehelper.models.leagueentry.LeagueEntry
 import com.example.leaguehelper.models.match.Match
 import com.example.leaguehelper.models.match.MatchesResponse
 import com.example.leaguehelper.models.staticdata.champion.Champion
@@ -26,6 +27,10 @@ class ProfileRepository(
             .matches.map { matchMetaData ->
             riotDataAPI.getMatchById(matchMetaData.gameId)
         }
+    }
+
+    suspend fun fetchLeagueEntries(summonerId: String): List<LeagueEntry> {
+        return riotDataAPI.getLeagueEntries(summonerId)
     }
 
     suspend fun fetchSummonerByName(name: String): Summoner {

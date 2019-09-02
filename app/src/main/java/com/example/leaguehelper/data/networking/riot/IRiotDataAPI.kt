@@ -1,5 +1,6 @@
 package com.example.leaguehelper.data.networking.riot
 
+import com.example.leaguehelper.models.leagueentry.LeagueEntry
 import com.example.leaguehelper.models.match.Match
 import com.example.leaguehelper.models.match.MatchesResponse
 import com.example.leaguehelper.models.summoner.Summoner
@@ -21,6 +22,11 @@ interface IRiotDataAPI {
     suspend fun getMatchById(
         @Path("matchId") matchId: Long
     ): Match
+
+    @GET("/lol/league/v4/entries/by-summoner/{summonerId}")
+    suspend fun getLeagueEntries(
+        @Path("summonerId") summonerId: String
+    ): List<LeagueEntry>
 
     @GET("/lol/summoner/v4/summoners/by-name/{summonerName}")
     suspend fun getSummonerByName(
