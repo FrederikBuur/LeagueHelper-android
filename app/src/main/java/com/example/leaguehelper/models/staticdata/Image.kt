@@ -6,15 +6,15 @@ data class Image(
 
     companion object {
         fun getSummonerSpellIconPath(version: String, spellName: String): String {
-            return "http://ddragon.leagueoflegends.com/cdn/$version/img/spell/SummonerFlash.png"
+            return "https://ddragon.leagueoflegends.com/cdn/$version/img/spell/SummonerFlash.png"
         }
 
         fun getItemIconPath(version: String, itemNumber: String): String {
-            return "http://ddragon.leagueoflegends.com/cdn/$version/img/item/$itemNumber.png"
+            return "https://ddragon.leagueoflegends.com/cdn/$version/img/item/$itemNumber.png"
         }
 
         fun getProfileIconPath(version: String, iconId: Int): String {
-            return "http://ddragon.leagueoflegends.com/cdn/$version/img/profileicon/$iconId.png "
+            return "https://ddragon.leagueoflegends.com/cdn/$version/img/profileicon/$iconId.png"
         }
 
     }

@@ -3,10 +3,9 @@ package com.example.leaguehelper.util.binding
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableBoolean
-import androidx.databinding.ObservableField
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.leaguehelper.util.ImageLoader
+import com.example.leaguehelper.util.setImageUrl
 
 class CustomBindingAdapter {
 
@@ -16,7 +15,7 @@ class CustomBindingAdapter {
         @BindingAdapter("imageUrl")
         fun setImageUrl(imageView: ImageView, url: String?) {
             url?.let {
-                ImageLoader.loadImage(imageView.context, url, imageView)
+                imageView.setImageUrl(it)
             }
         }
 

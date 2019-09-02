@@ -16,7 +16,7 @@ import com.example.leaguehelper.util.LeagueFragment
 import com.example.leaguehelper.pages.championdetail.championdetailbuilds.ChampionDetailBuildsFragment
 import com.example.leaguehelper.pages.championdetail.championdetailskins.ChampionDetailSkinsFragment
 import com.example.leaguehelper.pages.championdetail.championdetailspells.ChampionDetailSpellsFragment
-import com.example.leaguehelper.util.ImageLoader
+import com.example.leaguehelper.util.setImageUrl
 import kotlinx.android.synthetic.main.fragment_champion_detail.*
 import java.util.*
 
@@ -58,9 +58,7 @@ class ChampionDetailFragment : LeagueFragment() {
     private fun setupCollapsingToolbar(champion: Champion) {
         championDetailToolBar.title = champion.name
         championDetailTitle.text = champion.title
-        val imgSrc = champion.championSplashUrl()
-        context?.let { ImageLoader.loadImage(it, imgSrc, championDetailImage) }
-
+        championDetailImage.setImageUrl(champion.championSplashUrl())
     }
 
     private fun setupViewPager() {

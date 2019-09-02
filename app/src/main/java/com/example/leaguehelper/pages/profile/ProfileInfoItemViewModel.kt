@@ -6,14 +6,14 @@ import com.example.leaguehelper.models.summoner.Summoner
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 data class ProfileInfoItemViewModel(
     val repo: ProfileRepository,
     val summoner: Summoner
 ) {
 
-//    val profileIconUrl = ObservableField<String>()
-    val profileIconUrl = "http://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/897.png" // FIXME
+    val profileIconUrl = ObservableField<String>()
 
     init {
         CoroutineScope(Dispatchers.IO).launch {
@@ -23,7 +23,10 @@ data class ProfileInfoItemViewModel(
 
     private suspend fun setupView() {
         repo.getConfigData()?.let { cd ->
-//            profileIconUrl.set(Image.getProfileIconPath(cd.version, summoner.profileIconId))
+            withContext(Dispatchers.Main) {
+                val url = Image.getProfileIconPath(cd.version, summoner.profileIconId)
+                profileIconUrl.set(url)
+            }
         }
     }
 

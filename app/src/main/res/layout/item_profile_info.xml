@@ -39,16 +39,40 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    style="@style/LeagueTextBig"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{viewModel.summoner.name}"
-                    android:textColor="@color/textMainLight"
+                    android:orientation="vertical"
                     android:layout_marginStart="@dimen/margin_12"
                     app:layout_constraintStart_toEndOf="@id/profileIcon"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="The best summoner" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintVertical_bias="0">
+
+                    <TextView
+                        style="@style/LeagueTextBig"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.summoner.name}"
+                        android:textColor="@color/textMainLight"
+                        tools:text="BlindOneTrick" />
+                    
+                    <TextView
+                        style="@style/LeagueTextMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.format(@string/profile_item_info_level, viewModel.summoner.summonerLevel)}"
+                        android:textColor="@color/textMainLight"
+                        tools:text="Level: 222"/>
+
+                    <TextView
+                        style="@style/LeagueTextMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ranked winrate: 30%"
+                        android:textColor="@color/textMainLight"/>
+
+                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
