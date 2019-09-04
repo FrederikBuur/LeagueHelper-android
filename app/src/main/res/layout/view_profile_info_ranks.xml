@@ -51,6 +51,16 @@
                 android:layout_height="wrap_content"
                 tools:text="45 LP"/>
 
+            <TextView
+                style="@style/LeagueTextSmall"
+                android:textColor="@color/textMainLight"
+                android:text="@{viewModel.rankedSolo != null ? viewModel.rankedSolo.winLoseText : null}"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="W20/L13"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -88,6 +98,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="23 LP"/>
+
+            <TextView
+                style="@style/LeagueTextSmall"
+                android:textColor="@color/textMainLight"
+                android:text="@{viewModel.rankedTeam != null ? viewModel.rankedTeam.winLoseText : null}"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="W20/L13"/>
 
         </LinearLayout>
 
@@ -127,6 +147,16 @@
                 android:layout_height="wrap_content"
                 tools:text="87 LP"/>
 
+            <TextView
+                style="@style/LeagueTextSmall"
+                android:textColor="@color/textMainLight"
+                android:text="@{viewModel.flex5 != null ? viewModel.flex5.winLoseText : null}"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="W20/L13"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -164,6 +194,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="45 LP"/>
+
+            <TextView
+                style="@style/LeagueTextSmall"
+                android:textColor="@color/textMainLight"
+                android:text="@{viewModel.rankedTFT != null ? viewModel.rankedTFT.winLoseText : null}"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="W20/L13"/>
 
         </LinearLayout>
 
