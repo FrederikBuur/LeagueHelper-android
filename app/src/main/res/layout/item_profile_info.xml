@@ -14,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/margin_12"
-        android:paddingEnd="@dimen/margin_12"
-        android:paddingTop="@dimen/margin_12">
+        android:paddingTop="@dimen/margin_12"
+        android:paddingEnd="@dimen/margin_12">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -35,18 +35,17 @@
                     android:layout_height="100dp"
                     android:src="@color/primaryLight"
                     app:imageUrl="@{viewModel.profileIconUrl}"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_marginStart="@dimen/margin_12"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/profileIcon"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintVertical_bias="0">
 
                     <TextView
@@ -56,23 +55,27 @@
                         android:text="@{viewModel.summoner.name}"
                         android:textColor="@color/textMainLight"
                         tools:text="BlindOneTrick" />
-                    
+
                     <TextView
                         style="@style/LeagueTextMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{String.format(@string/profile_item_info_level, viewModel.summoner.summonerLevel)}"
                         android:textColor="@color/textMainLight"
-                        tools:text="Level: 222"/>
-
-                    <TextView
-                        style="@style/LeagueTextMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ranked winrate: 30%"
-                        android:textColor="@color/textMainLight"/>
+                        tools:text="Level: 222" />
 
                 </LinearLayout>
+
+                <include
+                    layout="@layout/view_profile_info_ranks"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/profileIcon"
+                    app:viewModel="@{viewModel.profileRanksViewModel}" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

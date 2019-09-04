@@ -15,6 +15,9 @@ data class LeagueEntry(
     val leaguePoints: Int
 ) {
 
+    val rankText: String
+        get() = "$tier $rank"
+
     sealed class MiniSeries(
         val progress: String,
         val wins: Int,

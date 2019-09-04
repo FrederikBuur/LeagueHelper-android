@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.leaguehelper.pages.profile.ProfileInfoRanks" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:background="@color/primary">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/LeagueTextMedium"
+                android:text="@string/profile_item_info_ranks_solo"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/LeagueTextSmall"
+                android:textColor="@color/textMainLight"
+                android:textStyle="bold"
+                android:text="@{viewModel.rankedSolo != null ? viewModel.rankedSolo.rankText : @string/profile_item_info_ranks_unranked}"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="GOLD III"/>
+
+            <TextView
+                style="@style/LeagueTextSmall"
+                android:textColor="@color/textMainLight"
+                android:textStyle="bold"
+                android:text="@{viewModel.rankedSolo != null ? String.format(@string/profile_item_info_ranks_lp, viewModel.rankedSolo.leaguePoints) : null}"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="45 LP"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/LeagueTextMedium"
+                android:text="@string/profile_item_info_ranks_team5"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/LeagueTextSmall"
+                android:textColor="@color/textMainLight"
+                android:textStyle="bold"
+                android:text="@{viewModel.rankedTeam != null ? viewModel.rankedTeam.rankText : @string/profile_item_info_ranks_unranked}"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="IRON I"/>
+
+            <TextView
+                style="@style/LeagueTextSmall"
+                android:textColor="@color/textMainLight"
+                android:textStyle="bold"
+                android:text="@{viewModel.flex5 != null ? String.format(@string/profile_item_info_ranks_lp, viewModel.rankedTeam.leaguePoints) : null}"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="23 LP"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/LeagueTextMedium"
+                android:text="@string/profile_item_info_ranks_flex5"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/LeagueTextSmall"
+                android:textColor="@color/textMainLight"
+                android:textStyle="bold"
+                android:text="@{viewModel.flex5 != null ? viewModel.flex5.rankText : @string/profile_item_info_ranks_unranked}"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="SILVER IV"/>
+
+            <TextView
+                style="@style/LeagueTextSmall"
+                android:textColor="@color/textMainLight"
+                android:textStyle="bold"
+                android:text="@{viewModel.flex5 != null ? String.format(@string/profile_item_info_ranks_lp, viewModel.flex5.leaguePoints) : null}"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="87 LP"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/LeagueTextMedium"
+                android:text="@string/profile_item_info_ranks_tft"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/LeagueTextSmall"
+                android:textColor="@color/textMainLight"
+                android:textStyle="bold"
+                android:text="@{viewModel.rankedTFT != null ? viewModel.rankedTFT.rankText : @string/profile_item_info_ranks_unranked}"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="MASTER"/>
+
+            <TextView
+                style="@style/LeagueTextSmall"
+                android:textColor="@color/textMainLight"
+                android:textStyle="bold"
+                android:text="@{viewModel.rankedTFT != null ? String.format(@string/profile_item_info_ranks_lp, viewModel.rankedTFT.leaguePoints) : null}"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="45 LP"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

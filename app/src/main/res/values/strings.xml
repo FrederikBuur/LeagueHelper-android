@@ -21,7 +21,14 @@
 	<string name="profile_search_summoner_title">Type in your summoner name</string>
 	<string name="profile_search_summoner_hint">Summoner name…</string>
 	<string name="profile_item_info_level">Level: %1$d</string>
-	<string name="profile_item_info_rinrate">Winrate(Ranked): %1$d</string>
+	<string name="profile_item_info_winrate">Winrate(Ranked): %1$d</string>
+
+	<string name="profile_item_info_ranks_solo">Solo/Duo</string>
+	<string name="profile_item_info_ranks_team5">Team 5v5</string>
+	<string name="profile_item_info_ranks_flex5">Flex 5v5</string>
+	<string name="profile_item_info_ranks_tft">TFT</string>
+	<string name="profile_item_info_ranks_unranked">Unranked</string>
+	<string name="profile_item_info_ranks_lp">%1$d LP</string>
 
 	<!--placeholder text-->
 	<string name="sample_text_small">

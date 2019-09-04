@@ -15,7 +15,7 @@ data class ProfileInfoItemViewModel(
 ) {
 
     val profileIconUrl = ObservableField<String>()
-    val winrateString = ObservableField<String>()
+    val profileRanksViewModel = ObservableField<ProfileInfoRanks>()
 
     init {
         CoroutineScope(Dispatchers.IO).launch {
@@ -30,26 +30,16 @@ data class ProfileInfoItemViewModel(
 
     private suspend fun fetchProfileIcon() {
         repo.getConfigData()?.let { cd ->
-            withContext(Dispatchers.Main) {
+//            withContext(Dispatchers.Main) {
                 val url = Image.getProfileIconPath(cd.version, summoner.profileIconId)
                 profileIconUrl.set(url)
-            }
+//            }
         }
     }
 
     private suspend fun fetchLeagueEntries() {
         repo.fetchLeagueEntries(summoner.id).also { entries ->
-            if (entries.isEmpty()) return
-
-            entries.singleOrNull { it.queueType == LeagueEntry.Queue.RANKED_SOLO_5 }?.let {
-
-            }
-//            entries.singleOrNull { it.queueType == LeagueEntry.Queue.RANKED_TFT }?.let {
-//
-//            }
-//            entries.singleOrNull { it.queueType == LeagueEntry.Queue.BLIND_PICK_5 }?.let {
-//
-//            }
+            profileRanksViewModel.set(ProfileInfoRanks(entries))
         }
     }
 }
