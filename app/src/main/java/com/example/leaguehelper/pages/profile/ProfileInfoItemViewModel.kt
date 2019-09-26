@@ -30,10 +30,8 @@ data class ProfileInfoItemViewModel(
 
     private suspend fun fetchProfileIcon() {
         repo.getConfigData()?.let { cd ->
-//            withContext(Dispatchers.Main) {
                 val url = Image.getProfileIconPath(cd.version, summoner.profileIconId)
                 profileIconUrl.set(url)
-//            }
         }
     }
 

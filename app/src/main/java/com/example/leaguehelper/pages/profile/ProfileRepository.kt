@@ -45,4 +45,8 @@ class ProfileRepository(
         return configDataDao.getConfigDataSuspend()
     }
 
+    suspend fun setConfigData(configData: ConfigData) {
+        configDataDao.insertOrUpdateConfigDataSuspend(configData)
+    }
+
 }

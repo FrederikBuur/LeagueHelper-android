@@ -19,6 +19,14 @@ data class ProfileMatchItemViewModel(
 
     val championUrl = ObservableField<String>()
 
+    val isWin = match.participantIdentities.singleOrNull { pId ->
+        pId.player.accountId == this.accountId
+    }?.let { pIdInner ->
+        match.participants.singleOrNull { p ->
+            p.participantId == pIdInner.participantId
+        }?.stats?.win
+    } ?: false
+
     init {
         CoroutineScope(Dispatchers.IO).launch {
             setupView()
@@ -46,10 +54,6 @@ data class ProfileMatchItemViewModel(
 
     fun onMatchClicked(v: View) {
         onMatchClicked.invoke(match, v)
-    }
-
-    fun isWin(): Boolean {
-        return true
     }
 
     fun timestamp(): String {

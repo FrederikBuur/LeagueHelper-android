@@ -17,6 +17,9 @@ interface ConfigDataDao {
     @Query("SELECT * FROM config_data_table WHERE id = 1")
     fun getConfigData(): LiveData<ConfigData?>
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertOrUpdateConfigDataSuspend(configData: ConfigData)
+
     @Query("SELECT * FROM config_data_table WHERE id = 1")
     suspend fun getConfigDataSuspend(): ConfigData?
 }

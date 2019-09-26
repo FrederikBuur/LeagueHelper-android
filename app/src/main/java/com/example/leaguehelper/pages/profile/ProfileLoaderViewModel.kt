@@ -1,7 +1,6 @@
 package com.example.leaguehelper.pages.profile
 
 import android.app.Application
-import android.util.Log
 import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
@@ -19,7 +18,6 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import me.tatarka.bindingcollectionadapter2.itembindings.OnItemBindClass
 import java.lang.Exception
 
@@ -74,20 +72,39 @@ class ProfileLoaderViewModel(
         }
     }
 
+    private val searchSummonerViewModel = ProfileSearchSummonerViewModel(
+        onSummonerFound = { summoner ->
+            CoroutineScope(Dispatchers.IO).launch {
+                getConfigData()?.let { cD ->
+                    item.set(loadingViewModel)
+                    fetchMatches(summoner)
+                    cD.copy(summoner = summoner).also {
+                        repo.setConfigData(it)
+                    }
+                }
+            }
+        },
+        repository = repo
+    )
+
     private suspend fun showProfileOrFindSummoner() {
         repo.getConfigData()?.summoner?.let {
             summoner.set(it)
             fetchMatches(it)
         } ?: run {
-            item.set(
-                ProfileSearchSummonerViewModel(
-                    onSummonerFound = { summoner ->
-                        item.set(loadingViewModel)
-                        fetchMatches(summoner)
-                    },
-                    repository = repo
-                )
-            )
+            item.set(searchSummonerViewModel)
+        }
+    }
+
+    private suspend fun getConfigData(): ConfigData? {
+        return repo.getConfigData()
+    }
+
+    private fun resetSummonerConfigData() {
+        CoroutineScope(Dispatchers.IO).launch {
+            repo.getConfigData()?.let { cD ->
+                repo.setConfigData(cD.copy(summoner = null))
+            }
         }
     }
 
@@ -101,8 +118,12 @@ class ProfileLoaderViewModel(
                                 summoner = sum,
                                 matches = matches,
                                 disposable = disposable,
+                                repo = repo,
                                 onMatchClicked = onMatchClicked,
-                                repo = repo
+                                onResetSummonerClicked = {
+                                    resetSummonerConfigData()
+                                    item.set(searchSummonerViewModel)
+                                }
                             )
                         )
                     }
