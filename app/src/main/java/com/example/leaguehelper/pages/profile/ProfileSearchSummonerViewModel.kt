@@ -7,6 +7,7 @@ import com.example.leaguehelper.util.ErrorHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.regex.Pattern
 
 data class ProfileSearchSummonerViewModel(
     private val repository: ProfileRepository,
@@ -17,9 +18,10 @@ data class ProfileSearchSummonerViewModel(
 
     fun onSearchClicked(searchEditText: EditText) {
 
-        if (searchEditText.text.isBlank()) return
+        val searchInput = searchEditText.text.toString().trim()
 
-        // todo check input local before fetching remote
+        if (searchInput.isBlank() || !isSearchValid(searchInput)) return
+
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 errorMessage.set("")
@@ -34,5 +36,10 @@ data class ProfileSearchSummonerViewModel(
                     }
             }
         }
+    }
+
+    private fun isSearchValid(searchInput: String): Boolean {
+        val regex = "^[0-9\\p{L} _.]{3,16}$"
+        return Pattern.matches(regex, searchInput)
     }
 }
