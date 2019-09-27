@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.leaguehelper.pages.profile.ProfileChampionMasteryViewModel" />
+    </data>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:background="@color/primary">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image2"
+                android:layout_width="@dimen/margin_48"
+                android:layout_height="@dimen/margin_48"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:civ_border_width="@dimen/margin_2"
+                app:imageUrl="@{viewModel.img2}"
+                tools:src="@drawable/ic_account"/>
+
+            <TextView
+                android:layout_width="@dimen/margin_12"
+                android:layout_height="@dimen/margin_12"
+                android:background="@drawable/circle_primary_dark"
+                android:textColor="@color/textMainLight"
+                android:textSize="8sp"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="@id/image2"
+                app:layout_constraintEnd_toEndOf="@id/image2"
+                app:layout_constraintTop_toBottomOf="@id/image2"
+                app:layout_constraintBottom_toBottomOf="@id/image2"
+                tools:text="7"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_4"
+                android:textColor="@color/textMainLight"
+                app:layout_constraintTop_toBottomOf="@id/image2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="1000000"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image1"
+                android:layout_width="@dimen/margin_56"
+                android:layout_height="@dimen/margin_56"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:civ_border_width="@dimen/margin_2"
+                app:imageUrl="@{viewModel.img1}"
+                tools:src="@drawable/ic_account"/>
+
+            <TextView
+                android:layout_width="@dimen/margin_12"
+                android:layout_height="@dimen/margin_12"
+                android:background="@drawable/circle_primary_dark"
+                android:textColor="@color/textMainLight"
+                android:textSize="8sp"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="@id/image1"
+                app:layout_constraintEnd_toEndOf="@id/image1"
+                app:layout_constraintTop_toBottomOf="@id/image1"
+                app:layout_constraintBottom_toBottomOf="@id/image1"
+                tools:text="7"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_4"
+                android:textColor="@color/textMainLight"
+                app:layout_constraintTop_toBottomOf="@id/image1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="1000000"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image3"
+                android:layout_width="@dimen/margin_48"
+                android:layout_height="@dimen/margin_48"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:civ_border_width="@dimen/margin_2"
+                app:imageUrl="@{viewModel.img3}"
+                tools:src="@drawable/ic_account"/>
+
+            <TextView
+                android:layout_width="@dimen/margin_12"
+                android:layout_height="@dimen/margin_12"
+                android:background="@drawable/circle_primary_dark"
+                android:textColor="@color/textMainLight"
+                android:textSize="8sp"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="@id/image3"
+                app:layout_constraintEnd_toEndOf="@id/image3"
+                app:layout_constraintTop_toBottomOf="@id/image3"
+                app:layout_constraintBottom_toBottomOf="@id/image3"
+                tools:text="7"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_4"
+                android:textColor="@color/textMainLight"
+                app:layout_constraintTop_toBottomOf="@id/image3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="1000000"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</layout>

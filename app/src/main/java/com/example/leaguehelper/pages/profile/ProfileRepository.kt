@@ -9,6 +9,7 @@ import com.example.leaguehelper.models.leagueentry.LeagueEntry
 import com.example.leaguehelper.models.match.Match
 import com.example.leaguehelper.models.match.MatchesResponse
 import com.example.leaguehelper.models.staticdata.champion.Champion
+import com.example.leaguehelper.models.summoner.ChampionMastery
 import com.example.leaguehelper.models.summoner.Summoner
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -27,6 +28,10 @@ class ProfileRepository(
             .matches.map { matchMetaData ->
             riotDataAPI.getMatchById(matchMetaData.gameId)
         }
+    }
+
+    suspend fun fetchChampionMasteriesBySummoner(summonerId: String): List<ChampionMastery> {
+        return riotDataAPI.getChampionMastieriesBySummoner(summonerId)
     }
 
     suspend fun fetchLeagueEntries(summonerId: String): List<LeagueEntry> {

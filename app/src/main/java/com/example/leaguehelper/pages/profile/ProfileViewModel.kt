@@ -3,6 +3,8 @@ package com.example.leaguehelper.pages.profile
 import android.view.View
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.leaguehelper.BR
 import com.example.leaguehelper.R
 import com.example.leaguehelper.models.match.Match

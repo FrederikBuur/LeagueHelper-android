@@ -31,14 +31,25 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profileIcon"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="@dimen/margin_62"
+                    android:layout_height="@dimen/margin_62"
                     android:src="@color/primaryLight"
                     app:imageUrl="@{viewModel.profileIconUrl}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <include
+                    android:id="@+id/championMastery"
+                    layout="@layout/view_profile_champion_masteries"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/profileName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:viewModel="@{viewModel.profileChampionMasteryViewModel}" />
+
                 <LinearLayout
+                    android:id="@+id/profileName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_12"
@@ -74,7 +85,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/profileIcon"
+                    app:layout_constraintTop_toBottomOf="@id/championMastery"
                     app:viewModel="@{viewModel.profileRanksViewModel}" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.example.leaguehelper.data.networking.riot
 import com.example.leaguehelper.models.leagueentry.LeagueEntry
 import com.example.leaguehelper.models.match.Match
 import com.example.leaguehelper.models.match.MatchesResponse
+import com.example.leaguehelper.models.summoner.ChampionMastery
 import com.example.leaguehelper.models.summoner.Summoner
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -32,5 +33,10 @@ interface IRiotDataAPI {
     suspend fun getSummonerByName(
         @Path("summonerName") summonerName: String
     ): Summoner
+
+    @GET("/lol/champion-mastery/v4/champion-masteries/by-summoner/{summonerId}")
+    suspend fun getChampionMastieriesBySummoner(
+        @Path("summonerId") summonerId: String
+    ): List<ChampionMastery>
 
 }
